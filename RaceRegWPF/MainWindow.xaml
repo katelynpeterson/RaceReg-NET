@@ -1,0 +1,126 @@
+﻿<Window x:Class="RaceRegWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:RaceReg.ViewModel;assembly=RaceReg"
+        xmlns:view="clr-namespace:RaceRegWPF.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="680" Width="800"
+        DataContext="{Binding Source={StaticResource Main}}">
+    <DockPanel>
+        <Ribbon DockPanel.Dock="Top">
+
+            <RibbonTab Header="Home">
+                <RibbonGroup Header="Meets">
+                    <RibbonButton Label="Add Meet"
+                                  LargeImageSource="/RaceReg;Component/Resources/track-corner-add.png"
+                                  ToolTipTitle="Add Meet Editor Screen."
+                                  ToolTipDescription="Add a new tab to create new meet."
+                                  Command="{Binding AddParticipantView}"/>
+                    <RibbonButton Label="View Meets"
+                                  LargeImageSource="/RaceReg;Component/Resources/track-corner.png"
+                                  ToolTipTitle="Add Meet View Screen."
+                                  ToolTipDescription="Add a new tab to view meets."
+                                  Command="{Binding AddParticipantView}"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Participants">
+                    <RibbonButton Label="Add Participant"
+                                  LargeImageSource="/RaceReg;Component/Resources/femalerunner-add.png"
+                                  ToolTipTitle="Add Participant Editor Screen."
+                                  ToolTipDescription="Add a new tab to create new participant."
+                                  Command="{Binding AddParticipantView}"/>
+                    <RibbonButton Label="View Participants"
+                                  LargeImageSource="/RaceReg;Component/Resources/femalerunner.png"
+                                  ToolTipTitle="Add Participant View Screen."
+                                  ToolTipDescription="Add a new tab to view meet participants."
+                                  Command="{Binding AddAllParticipantsView}"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Refresh">
+                    <RibbonButton Label="Refresh Items"
+                                  LargeImageSource="/RaceReg;Component/Resources/refresh.png"
+                                  ToolTipTitle="Refresh RaceReg Items"
+                                  ToolTipDescription="Refresh all meet and participant information from the RaceReg servers."
+                                  Command="{Binding RefreshItems}"/>
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="RaceReg Registration" />
+            <Separator></Separator>
+            <StatusBarItem Content="{Binding StatusMessage}" />
+        </StatusBar>
+
+        <TabControl ItemsSource="{Binding ChildViewModels}" SelectedItem="{Binding SelectedChildViewModel}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding ViewModel}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vm:ParticipantViewModel}">
+                                <view:ParticipantView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:AllParticipantViewModel}">
+                                <view:AllParticipantView />
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </DockPanel>
+    <!--
+    <StackPanel>
+        <DataGrid ItemsSource="{Binding Participants}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Affiliation" Binding="{Binding Affiliation.Abbreviation}"/>
+                <DataGridTextColumn Header="Birthdate" Binding="{Binding BirthDate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+    -->
+
+    <!--
+    <DockPanel>
+            <ToolBar DockPanel.Dock="Top">
+                <Button Content="Save Racer" />
+            </ToolBar>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name:" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name:" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Affiliation:" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Date of Birth:" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="4" Text="Gender:" HorizontalAlignment="Center"/>
+            </Grid>
+            <DataGrid ItemsSource="{Binding Participants}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
+                    <DataGridTextColumn Header="Affiliation" Binding="{Binding Affiliation.Abbreviation}" />
+                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" />
+                    <DataGridTextColumn Header="Birth Date" Binding="{Binding BirthDate}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    -->
+</Window>
