@@ -14,31 +14,31 @@
             <RibbonTab Header="Home">
                 <RibbonGroup Header="Meets">
                     <RibbonButton Label="Add Meet"
-                                  LargeImageSource="/RaceReg;Component/Resources/track-corner-add.png"
+                                  LargeImageSource="/Resources/track-corner-add.png"
                                   ToolTipTitle="Add Meet Editor Screen."
                                   ToolTipDescription="Add a new tab to create new meet."
                                   Command="{Binding AddParticipantView}"/>
                     <RibbonButton Label="View Meets"
-                                  LargeImageSource="/RaceReg;Component/Resources/track-corner.png"
+                                  LargeImageSource="/Resources/track-corner.png"
                                   ToolTipTitle="Add Meet View Screen."
                                   ToolTipDescription="Add a new tab to view meets."
                                   Command="{Binding AddParticipantView}"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Participants">
                     <RibbonButton Label="Add Participant"
-                                  LargeImageSource="/RaceReg;Component/Resources/femalerunner-add.png"
+                                  LargeImageSource="/Resources/femalerunner-add.png"
                                   ToolTipTitle="Add Participant Editor Screen."
                                   ToolTipDescription="Add a new tab to create new participant."
                                   Command="{Binding AddParticipantView}"/>
                     <RibbonButton Label="View Participants"
-                                  LargeImageSource="/RaceReg;Component/Resources/femalerunner.png"
+                                  LargeImageSource="/Resources/femalerunner.png"
                                   ToolTipTitle="Add Participant View Screen."
                                   ToolTipDescription="Add a new tab to view meet participants."
                                   Command="{Binding AddAllParticipantsView}"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Refresh">
                     <RibbonButton Label="Refresh Items"
-                                  LargeImageSource="/RaceReg;Component/Resources/refresh.png"
+                                  LargeImageSource="/Resources/refresh.png"
                                   ToolTipTitle="Refresh RaceReg Items"
                                   ToolTipDescription="Refresh all meet and participant information from the RaceReg servers."
                                   Command="{Binding RefreshItems}"/>
