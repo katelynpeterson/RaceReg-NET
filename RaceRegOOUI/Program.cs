@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Ooui;
+using System;
+using Xamarin.Forms;
 
 namespace RaceRegOOUI
 {
@@ -6,7 +8,11 @@ namespace RaceRegOOUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Forms.Init();
+            UI.Port = 12345;
+            UI.Host = "localhost";
+            UI.Publish("/", new Page1() { BindingContext = new ViewModel() }.GetOouiElement());
+            Console.ReadLine();
         }
     }
 }
