@@ -12,7 +12,6 @@
     <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="MySql.Data" Version="8.0.13" />
-    <PackageReference Include="MySql.Data.Entity" Version="6.10.8" />
   </ItemGroup>
 
 </Project>
