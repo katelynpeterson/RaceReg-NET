@@ -10,4 +10,8 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RaceReg\RaceReg.csproj" />
+  </ItemGroup>
+
 </Project>
