@@ -97,12 +97,13 @@ namespace RaceReg.ViewModel
                 Set(ref selectedChildViewModel, value);
             }
         }
+        
 
         private RelayCommand addParticipantView;
         public RelayCommand AddParticipantView => addParticipantView ?? (addParticipantView = new RelayCommand(
             () =>
             {
-                ParticipantViewModel participantEditorViewModel = new ParticipantViewModel();
+                ParticipantViewModel participantEditorViewModel = new ParticipantViewModel(_database);
                 participantEditorViewModel.Affiliations = this.Affiliations;
                 ChildViewModels.Add(new ChildControl("Participant Editor", participantEditorViewModel));
                 SelectedChildViewModel = ChildViewModels.Last();

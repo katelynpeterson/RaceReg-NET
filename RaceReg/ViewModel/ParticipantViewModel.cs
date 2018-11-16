@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using RaceReg.Model;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace RaceReg.ViewModel
 {
     public class ParticipantViewModel : ViewModelBase
     {
+        private IRaceRegDB _database;
+
         private Participant participant;
         public Participant Participant
         {
@@ -46,8 +49,32 @@ namespace RaceReg.ViewModel
             }
         }
 
-        public ParticipantViewModel()
+        public async Task SaveNewParticipantToDatabaseAsync()
         {
+            var result = await _database.SaveParticipant(Participant);
+
+            if(result == null)
+            {
+                //Save to database failed
+            }
+            else
+            {
+                //Close the view
+            }
+        }
+
+        private RelayCommand saveNewParticipant;
+        public RelayCommand SaveNewParticipant => saveNewParticipant ?? (saveNewParticipant = new RelayCommand(
+            async () =>
+            {
+                await SaveNewParticipantToDatabaseAsync();
+            }
+            ));
+
+        public ParticipantViewModel(IRaceRegDB db)
+        {
+            _database = db;
+
             Participant = new Participant();
         }
     }
