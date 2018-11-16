@@ -14,4 +14,7 @@
     <PackageReference Include="MySql.Data" Version="8.0.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove=".DS_Store" />
+  </ItemGroup>
 </Project>
