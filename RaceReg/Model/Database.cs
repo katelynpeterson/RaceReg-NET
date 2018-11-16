@@ -133,6 +133,15 @@ namespace RaceReg.Model
                     var participantId = Convert.ToInt32(cmd.ExecuteScalar());
                     updatedParticipant.Id = participantId;
                 }
+
+                if(updatedParticipant.Id == 0 || updatedParticipant.Id == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return updatedParticipant;
+                }
             }
         }
 
