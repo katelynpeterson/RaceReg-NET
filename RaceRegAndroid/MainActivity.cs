@@ -1,26 +1,42 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
+using Android.Runtime;
+using Android.Support.Design.Widget;
+using Android.Support.V7.App;
+using Android.Views;
+using Android.Widget;
 
 namespace RaceRegAndroid
 {
-    [Activity(Label = "RaceReg", MainLauncher = true, Icon = "@mipmap/icon")]
-    public class MainActivity : Activity
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
-        int count = 1;
+        TextView textMessage;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.activity_main);
 
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
-
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.myButton);
-
-            button.Click += delegate { button.Text = $"{count++} clicks!"; };
+            textMessage = FindViewById<TextView>(Resource.Id.message);
+            BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
+            navigation.SetOnNavigationItemSelectedListener(this);
+        }
+        public bool OnNavigationItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.navigation_home:
+                    textMessage.SetText(Resource.String.title_home);
+                    return true;
+                case Resource.Id.navigation_dashboard:
+                    textMessage.SetText(Resource.String.title_dashboard);
+                    return true;
+                case Resource.Id.navigation_notifications:
+                    textMessage.SetText(Resource.String.title_notifications);
+                    return true;
+            }
+            return false;
         }
     }
 }
