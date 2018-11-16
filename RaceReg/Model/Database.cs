@@ -83,9 +83,57 @@ namespace RaceReg.Model
             return affiliations;
         }
 
-        public async Task<string> Save(Participant updatedParticipant)
+        public async Task<Participant> SaveParticipant(Participant updatedParticipant)
         {
-            throw new NotImplementedException();
+            string saveParticipantStatement = "INSERT INTO " + Constants.PARTICIPANT + " ("
+                                                                        + "firstname, "
+                                                                        + "lastname, "
+                                                                        + "affiliationid, "
+                                                                        + "gender, "
+                                                                        + "birthdate, "
+                                                                        + "active"
+                                                                        + ") VALUES "
+                                                                        + "@firstname, "
+                                                                        + "@lastname, "
+                                                                        + "@affiliationid, "
+                                                                        + "@gender, "
+                                                                        + "@birthdate, "
+                                                                        + "@active"
+                                                                        + ");" 
+                                                                        + "SELECT last_insert_id();";
+            using (var connection1 = new MySqlConnection(Constants.CONNECTION_STRING))
+            {
+                await connection1.OpenAsync();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = connection1;
+                    cmd.CommandText = saveParticipantStatement;
+                    cmd.Prepare();
+
+                    cmd.Parameters.AddWithValue("@firstname", updatedParticipant.FirstName);
+                    cmd.Parameters.AddWithValue("@lastname", updatedParticipant.LastName);
+                    cmd.Parameters.AddWithValue("@affiliationid", updatedParticipant.Affiliation.Id);
+                    if(updatedParticipant.Gender == Participant.GenderType.Male)
+                    {
+                        cmd.Parameters.AddWithValue("@gender", "m");
+                    }
+                    else if(updatedParticipant.Gender == Participant.GenderType.Female)
+                    {
+                        cmd.Parameters.AddWithValue("@gender", "f");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@gender", "o");
+                    }
+
+
+                    cmd.Parameters.AddWithValue("@birthdate", updatedParticipant.BirthDate);
+                    cmd.Parameters.AddWithValue("@active", 1);
+
+                    var participantId = Convert.ToInt32(cmd.ExecuteScalar());
+                    updatedParticipant.Id = participantId;
+                }
+            }
         }
 
     }

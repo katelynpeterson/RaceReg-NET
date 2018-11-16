@@ -10,6 +10,6 @@ namespace RaceReg.Model
     {
         Task<IEnumerable<Affiliation>> RefreshAffiliations();
         Task<IEnumerable<Participant>> RefreshParticipants();
-        Task<string> Save(Participant updatedParticipant);
+        Task<Participant> SaveParticipant(Participant updatedParticipant);
     }
 }
