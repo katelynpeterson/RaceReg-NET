@@ -25,5 +25,5 @@ There are multiple projects within this solution. You can open this solution in 
 * macOS Application (TBA)
 
 
-This README will continued to be updated with more information in the near future. If you have questions, please email: <jackson@jacksonportejp.com>
+This README will continued to be updated with more information in the near future. If you have questions, please email: <jackson@jacksonporterjp.com>
 
