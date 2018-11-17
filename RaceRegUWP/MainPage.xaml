@@ -8,9 +8,9 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     xmlns:vm="clr-namespace:RaceReg.ViewModel;assembly=RaceReg">
-    <Page.DataContext>
+    <!--<Page.DataContext>
         <vm:MainViewModel/>
-    </Page.DataContext>
+    </Page.DataContext>-->
     
     <Grid>
         <Grid.ColumnDefinitions>
