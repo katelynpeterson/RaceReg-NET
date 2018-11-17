@@ -77,7 +77,7 @@
                 Grid.ColumnSpan="2"
                 Grid.Row="5"
                 Content="Save New Participant"
-                Command="SaveNewParticipant"
+                Command="{Binding SaveNewParticipant}"
                 />
     </Grid>
 
