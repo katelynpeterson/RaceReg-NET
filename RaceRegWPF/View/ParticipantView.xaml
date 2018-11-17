@@ -51,8 +51,7 @@
                   Grid.Row="2" 
                   ItemsSource="{Binding Affiliations}" 
                   DisplayMemberPath="Name"
-                  SelectedValue="{Binding Participant.Affiliation}" 
-                  SelectedValuePath="Content">
+                  SelectedItem="{Binding Participant.Affiliation}" >
         </ComboBox>
         <TextBlock Grid.Column="0"
                Grid.Row="3"
@@ -62,8 +61,7 @@
                   Grid.Column="1"
                   Grid.Row="3" 
                   ItemsSource="{Binding Participant.GenderTypes}" 
-                  SelectedValue="{Binding Participant.Gender}" 
-                  SelectedValuePath="Content">
+                  SelectedItem="{Binding Participant.Gender}" >
         </ComboBox>
         <TextBlock Grid.Column="0"
                Grid.Row="4"
