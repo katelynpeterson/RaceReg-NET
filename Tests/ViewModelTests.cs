@@ -39,6 +39,11 @@ namespace Tests
             {
                 throw new NotImplementedException();
             }
+
+            public Task<Participant> SaveParticipant(Participant updatedParticipant)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         private class TestDialogService : IDialogService
