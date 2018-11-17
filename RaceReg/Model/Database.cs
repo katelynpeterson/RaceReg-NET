@@ -92,7 +92,7 @@ namespace RaceReg.Model
                                                                         + "gender, "
                                                                         + "birthdate, "
                                                                         + "active"
-                                                                        + ") VALUES "
+                                                                        + ") VALUES ("
                                                                         + "@firstname, "
                                                                         + "@lastname, "
                                                                         + "@affiliationid, "
@@ -100,7 +100,7 @@ namespace RaceReg.Model
                                                                         + "@birthdate, "
                                                                         + "@active"
                                                                         + ");" 
-                                                                        + "SELECT last_insert_id();";
+                                                                        + " SELECT last_insert_id();";
             using (var connection1 = new MySqlConnection(Constants.CONNECTION_STRING))
             {
                 Console.WriteLine("My Participant Is: " + updatedParticipant.ToString());
@@ -131,9 +131,13 @@ namespace RaceReg.Model
                     cmd.Parameters.AddWithValue("@birthdate", updatedParticipant.BirthDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     cmd.Parameters.AddWithValue("@active", 1);
 
+                    Console.WriteLine("FULL COMMAND" + cmd.ToString());
+
                     await cmd.ExecuteNonQueryAsync();
 
-                    if(cmd.LastInsertedId != null)
+#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                    if (cmd.LastInsertedId != null)
+#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
                     {
                         cmd.Parameters.Add(new MySqlParameter("newId", cmd.LastInsertedId));
                     }
@@ -142,7 +146,9 @@ namespace RaceReg.Model
                     updatedParticipant.Id = participantId;
                 }
 
-                if(updatedParticipant.Id == 0 || updatedParticipant.Id == null)
+#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                if (updatedParticipant.Id == 0 || updatedParticipant.Id == null)
+#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
                 {
                     return null;
                 }
