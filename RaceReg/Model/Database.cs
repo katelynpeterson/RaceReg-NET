@@ -128,10 +128,17 @@ namespace RaceReg.Model
                     }
 
 
-                    cmd.Parameters.AddWithValue("@birthdate", updatedParticipant.BirthDate);
+                    cmd.Parameters.AddWithValue("@birthdate", updatedParticipant.BirthDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     cmd.Parameters.AddWithValue("@active", 1);
 
-                    var participantId = Convert.ToInt32(cmd.ExecuteScalar());
+                    await cmd.ExecuteNonQueryAsync();
+
+                    if(cmd.LastInsertedId != null)
+                    {
+                        cmd.Parameters.Add(new MySqlParameter("newId", cmd.LastInsertedId));
+                    }
+
+                    var participantId = Convert.ToInt32(cmd.Parameters["@newId"].Value);
                     updatedParticipant.Id = participantId;
                 }
 
