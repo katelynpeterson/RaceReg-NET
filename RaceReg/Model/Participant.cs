@@ -177,6 +177,12 @@ namespace RaceReg.Model
             }
         }
 
+        public string ToString()
+        {
+            return this.FirstName;
+                //+ " " + this.LastName + ": " + this.BirthDate + ", " + this.Affiliation.Name + ", " + this.Gender;
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

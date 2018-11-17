@@ -103,6 +103,7 @@ namespace RaceReg.Model
                                                                         + "SELECT last_insert_id();";
             using (var connection1 = new MySqlConnection(Constants.CONNECTION_STRING))
             {
+                Console.WriteLine("My Participant Is: " + updatedParticipant.ToString());
                 await connection1.OpenAsync();
                 using (var cmd = new MySqlCommand())
                 {
