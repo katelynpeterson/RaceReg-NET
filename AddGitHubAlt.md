@@ -16,7 +16,7 @@
 
 `git push origin`
 
-'git push alt`
+`git push alt`
 
 If you have questions, please email: <jackson@jacksonporterjp.com>
 
