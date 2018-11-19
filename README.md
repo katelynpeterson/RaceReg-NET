@@ -2,6 +2,10 @@
 # RaceReg - Timing, Results and Registration
 ---
 ## RaceReg is a Race Registration and Timing Software. It is created and maintained for the intent for free use. 
+## RaceReg .NET is now under development in multiple locations. 
+-- [Azure DevOps](https://dev.azure.com/RaceReg/RaceReg)
+-- [Github](https://githubom.com/jacksonporter/RaceReg-NET) (This location is a mirror of commits from Azure DevOps)
+
 ### This software is licensed under the [Apache License 2.0](https://github.com/jacksonporter/RaceReg-NET/blob/master/LICENSE). 
 
 **This is the .NET development track of RaceReg. There is also a [Java Development Track](https://github.com/jacksonporter/RaceReg).**
@@ -17,9 +21,9 @@ You are the .NET development repository for RaceReg. RaceReg orginally started a
 There are multiple projects within this solution. You can open this solution in VisualStudio to view all the projects. The projects are including (or will include):
 
 * WPF Application (Windows)
-* UWP Application (Univeral Windows)
-* Avalonia Application (.NET Core Cross Platform GUI Application)
-* OOUI Application (.NET Core ASP.NET application using Xamarin Forms)
+* UWP Application (Univeral Windows) [In Progress]
+* Avalonia Application (.NET Core Cross Platform GUI Application) (TBA)
+* OOUI Application (.NET Core ASP.NET application using Xamarin Forms) (TBA)
 * iOS Application (TBA)
 * Android Application (TBA)
 * macOS Application (TBA)
