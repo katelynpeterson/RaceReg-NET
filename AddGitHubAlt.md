@@ -9,9 +9,13 @@
 ### This software is licensed under the [Apache License 2.0](https://github.com/jacksonporter/RaceReg-NET/blob/master/LICENSE). 
 
 **If using Azure DevOps, you can add the github remote by navigating to the local repository on your machine and sending the command:**
+
 `git remote add alt https://github.com/jacksonporter/RaceReg-NET.git`
+
 **To push commits to both locations, you'll need to run:**
+
 `git push origin`
+
 'git push alt`
 
 If you have questions, please email: <jackson@jacksonporterjp.com>
