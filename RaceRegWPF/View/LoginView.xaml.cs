@@ -18,9 +18,9 @@ namespace RaceRegWPF.View
     /// <summary>
     /// Interaction logic for ManagementView.xaml
     /// </summary>
-    public partial class ManagementView : UserControl
+    public partial class LoginView : UserControl
     {
-        public ManagementView()
+        public LoginView()
         {
             InitializeComponent();
         }

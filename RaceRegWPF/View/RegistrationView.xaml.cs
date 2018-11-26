@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace RaceRegWPF.View
 {
     /// <summary>
-    /// Interaction logic for ManagementView.xaml
+    /// Interaction logic for RegistrationView.xaml
     /// </summary>
-    public partial class ManagementView : UserControl
+    public partial class RegistrationView : UserControl
     {
-        public ManagementView()
+        public RegistrationView()
         {
             InitializeComponent();
         }

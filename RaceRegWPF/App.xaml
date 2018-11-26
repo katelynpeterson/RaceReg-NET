@@ -8,8 +8,7 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:RaceReg.ViewModel;assembly=RaceReg">
     <Application.Resources>
-    <ResourceDictionary>
-            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+        <ResourceDictionary>
             <vm:MainWindowViewModel x:Key="Main" />
         </ResourceDictionary>
   </Application.Resources>

@@ -13,9 +13,9 @@
                       DataType="{x:Type vm:LoginViewModel}">
             <view:LoginView />
         </DataTemplate>
-        <DataTemplate x:Key="ManagementViewTemplate" 
-                      DataType="{x:Type vm:ManagementViewModel}">
-            <view:ManagementView />
+        <DataTemplate x:Key="RegistrationViewTemplate" 
+                      DataType="{x:Type vm:RegistrationViewModel}">
+            <view:RegistrationView />
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -25,7 +25,7 @@
                     <Setter Property="ContentTemplate" Value="{StaticResource LoginViewTemplate}" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding SwitchView}" Value="1">
-                            <Setter Property="ContentTemplate" Value="{StaticResource ManagementViewTemplate}" />
+                            <Setter Property="ContentTemplate" Value="{StaticResource RegistrationViewTemplate}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
