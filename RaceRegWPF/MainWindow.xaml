@@ -17,6 +17,10 @@
                       DataType="{x:Type vm:RegistrationViewModel}">
             <view:RegistrationView />
         </DataTemplate>
+        <DataTemplate x:Key="CreateAccountViewTemplate" 
+                      DataType="{x:Type vm:CreateAccountViewModel}">
+            <view:RegistrationView />
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <ContentControl Content="{Binding }">
@@ -26,6 +30,9 @@
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding SwitchView}" Value="1">
                             <Setter Property="ContentTemplate" Value="{StaticResource RegistrationViewTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SwitchView}" Value="2">
+                            <Setter Property="ContentTemplate" Value="{StaticResource CreateAccountViewTemplate}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
