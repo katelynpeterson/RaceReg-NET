@@ -1,6 +1,8 @@
-﻿using System;
+﻿using RaceReg.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,11 +20,19 @@ namespace RaceRegWPF.View
     /// <summary>
     /// Interaction logic for ManagementView.xaml
     /// </summary>
-    public partial class LoginView : UserControl
+    public partial class LoginView : UserControl, IHavePassword
     {
         public LoginView()
         {
             InitializeComponent();
+        }
+
+        public SecureString Password
+        {
+            get
+            {
+                return UserPassword.SecurePassword;
+            }
         }
     }
 }

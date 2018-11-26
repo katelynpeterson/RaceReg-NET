@@ -89,6 +89,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="PasswordRelayCommand.cs" />
     <Compile Include="View\AllParticipantView.xaml.cs">
       <DependentUpon>AllParticipantView.xaml</DependentUpon>
     </Compile>
@@ -192,6 +193,9 @@
       <Project>{3bd72779-14b8-4b81-8a5d-5088340c46b8}</Project>
       <Name>RaceReg</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RaceRegLogo_TimingAndRegistration.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
