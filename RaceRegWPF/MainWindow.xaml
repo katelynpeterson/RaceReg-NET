@@ -19,7 +19,7 @@
         </DataTemplate>
         <DataTemplate x:Key="CreateAccountViewTemplate" 
                       DataType="{x:Type vm:CreateAccountViewModel}">
-            <view:RegistrationView />
+            <view:CreateAccountView />
         </DataTemplate>
     </Window.Resources>
     <Grid>

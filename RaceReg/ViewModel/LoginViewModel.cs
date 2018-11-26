@@ -44,7 +44,7 @@ namespace RaceReg.ViewModel
                 //Do stuff with the password
             }
 
-            //Change to Managment View
+            //Change to RegistrationView
 
             throw new NotImplementedException();
         }

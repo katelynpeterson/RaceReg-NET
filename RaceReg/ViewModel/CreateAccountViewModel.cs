@@ -56,12 +56,37 @@ namespace RaceReg.ViewModel
             }
             ));
 
+        public async void RefreshAffiliationsAsync()
+        {
+            var getAffiliations = await _database.RefreshAffiliations().ConfigureAwait(true);
+            Affiliations.Clear();
+
+            foreach (Affiliation affiliation in getAffiliations)
+            {
+                Affiliations.Add(affiliation);
+            }
+            Affiliations = new ObservableCollection<Affiliation>(getAffiliations);
+        }
+
+        private RelayCommand refreshAffiliations;
+        public RelayCommand RefreshAffiliations => refreshAffiliations ?? (refreshAffiliations = new RelayCommand(
+            () =>
+            {
+                RefreshAffiliationsAsync();
+            }
+            ));
 
         public CreateAccountViewModel(IRaceRegDB db)
         {
+            Affiliations = new ObservableCollection<Affiliation>();
+            User = new User();
+
             _database = db;
 
-            User = new User();
+            RefreshAffiliationsAsync();
         }
+
+        //Default constructor
+        public CreateAccountViewModel() : this(new Database()) { }
     }
 }

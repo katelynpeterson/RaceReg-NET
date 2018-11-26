@@ -13,6 +13,8 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+                <MenuItem Header="_Refresh Affiliations" 
+                          Command="{Binding RefreshAffiliations}"/>
                 <MenuItem Header="_Exit" 
                           Command="{Binding ExitCommand}"/>
             </MenuItem>

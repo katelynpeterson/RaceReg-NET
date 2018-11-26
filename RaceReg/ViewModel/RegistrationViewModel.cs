@@ -78,7 +78,7 @@ namespace RaceReg.ViewModel
         }
 
         //Default constructor
-        //public ManagementViewModel() : this(new Database(), new DialogService()) { }
+        public RegistrationViewModel() : this(new Database(), new DialogService()) { }
 
         public async void QueryDatabase()
         {
