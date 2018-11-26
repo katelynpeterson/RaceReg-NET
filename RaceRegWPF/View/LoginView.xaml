@@ -11,10 +11,14 @@
         <vm:LoginViewModel />
     </UserControl.DataContext>
     <DockPanel>
-        <Image DockPanel.Dock="Top"
-               Source="../Resources/RaceRegLogo_TimingAndRegistration.png"
-               Height="150"
-               Width="150"/>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" />
+            </MenuItem>
+        </Menu>
         <StackPanel DockPanel.Dock="Bottom"
                     Orientation="Horizontal"
                     Margin="10"
@@ -25,7 +29,7 @@
                     Width="200"
                     FontSize="24"
                     Command="{Binding LoginCommand}"
-                    CommandParameter="{Binding ElementName=This}" Click="Button_Click"/>
+                    CommandParameter="{Binding ElementName=This}" />
             <Button Content="Create Account"
                     Margin="10"
                     Height="100"
@@ -34,27 +38,35 @@
                     Command="{Binding CreateAccountCommand}"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal"
+            <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center">
-                <TextBlock Text="Username:"
+                <Image Source="../Resources/RaceRegLogo_TimingAndRegistration.png"
+                      Height="150"
+                      Width="150"/>
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <TextBlock Text="Username:"
                            FontSize="24"
                            Margin="10"
                            Width="125"/>
-                <TextBox Text="{Binding Username}"
+                        <TextBox Text="{Binding Username}"
                          FontSize="24"
                          Margin="10"
                          Width="200"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                <TextBlock Text="Password:"
+                        <TextBlock Text="Password:"
                            FontSize="24"
                            Margin="10"
                            Width="125"/>
-                <PasswordBox x:Name="UserPassword"
+                        <PasswordBox x:Name="UserPassword"
                          FontSize="24"
                          Margin="10"
                          Width="200"/>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </DockPanel>
