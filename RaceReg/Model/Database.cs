@@ -103,7 +103,6 @@ namespace RaceReg.Model
                                                                         + " SELECT last_insert_id();";
             using (var connection1 = new MySqlConnection(Constants.CONNECTION_STRING))
             {
-                Console.WriteLine("My Participant Is: " + updatedParticipant.ToString());
                 await connection1.OpenAsync();
                 using (var cmd = new MySqlCommand())
                 {
@@ -130,8 +129,6 @@ namespace RaceReg.Model
 
                     cmd.Parameters.AddWithValue("@birthdate", updatedParticipant.BirthDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     cmd.Parameters.AddWithValue("@active", 1);
-
-                    Console.WriteLine("FULL COMMAND" + cmd.ToString());
 
                     await cmd.ExecuteNonQueryAsync();
 

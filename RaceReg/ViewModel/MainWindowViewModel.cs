@@ -25,7 +25,7 @@ namespace RaceReg.ViewModel
 
         public MainWindowViewModel()
         {
-            SwitchView = 2;
+            SwitchView = 0;
         }
     }
 }
