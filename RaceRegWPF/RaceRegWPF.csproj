@@ -89,7 +89,6 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Compile Include="PasswordRelayCommand.cs" />
     <Compile Include="View\AllParticipantView.xaml.cs">
       <DependentUpon>AllParticipantView.xaml</DependentUpon>
     </Compile>

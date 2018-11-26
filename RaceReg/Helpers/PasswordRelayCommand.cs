@@ -13,13 +13,13 @@ namespace RaceReg.Helpers
         private readonly Action<object> _Execute;
         private readonly Func<object, bool> _CanExecute;
 
-        public RelayCommand(Action<object> execute)
+        public PasswordRelayCommand(Action<object> execute)
             : this(execute, null)
         {
 
         }
 
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute)
+        public PasswordRelayCommand(Action<object> execute, Func<object, bool> canExecute)
         {
             if (execute == null)
             {

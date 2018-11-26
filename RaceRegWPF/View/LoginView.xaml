@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RaceRegWPF.View"
+             xmlns:vm="clr-namespace:RaceReg.ViewModel;assembly=RaceReg"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:LoginViewModel />
+    </UserControl.DataContext>
     <DockPanel>
         <Image DockPanel.Dock="Top"
                Source="../Resources/RaceRegLogo_TimingAndRegistration.png"
@@ -21,7 +25,7 @@
                     Width="200"
                     FontSize="24"
                     Command="{Binding LoginCommand}"
-                    CommandParameter="{Binding ElementName=This}"/>
+                    CommandParameter="{Binding ElementName=This}" Click="Button_Click"/>
             <Button Content="Create Account"
                     Margin="10"
                     Height="100"
