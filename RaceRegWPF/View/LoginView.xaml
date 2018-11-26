@@ -21,6 +21,9 @@
                           Command="{Binding AboutCommand}"/>
             </MenuItem>
         </Menu>
+        <!-- Show the number for the current view on the mainwindow -->
+        <TextBlock DockPanel.Dock="Left"
+            Text="{Binding SwitchView}" />
         <StackPanel DockPanel.Dock="Bottom"
                     Orientation="Horizontal"
                     Margin="10"
