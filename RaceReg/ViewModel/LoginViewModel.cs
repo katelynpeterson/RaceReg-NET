@@ -9,6 +9,10 @@ namespace RaceReg.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
+        public LoginViewModel(MainWindowViewModel mainWindow)
+        {
+            this.mainWindow = mainWindow ?? throw new ArgumentNullException(nameof(mainWindow));
+        }
         private PasswordRelayCommand loginCommand;
         public PasswordRelayCommand LoginCommand => loginCommand ?? (loginCommand = new PasswordRelayCommand(Login));
 
@@ -28,10 +32,12 @@ namespace RaceReg.ViewModel
             ));
 
         private RelayCommand aboutCommand;
+        private readonly MainWindowViewModel mainWindow;
+
         public RelayCommand AboutCommand => aboutCommand ?? (aboutCommand = new RelayCommand(
             () =>
             {
-                throw new NotImplementedException();
+                mainWindow.ChildViewModel = mainWindow.CreateAccount;
             }
             ));
 

@@ -9,34 +9,27 @@
         Title="MainWindow" Height="680" Width="800"
         DataContext="{Binding Source={StaticResource Main}}">
     <Window.Resources>
-        <DataTemplate x:Key="LoginViewTemplate" 
-                      DataType="{x:Type vm:LoginViewModel}">
-            <view:LoginView />
-        </DataTemplate>
-        <DataTemplate x:Key="RegistrationViewTemplate" 
-                      DataType="{x:Type vm:RegistrationViewModel}">
-            <view:RegistrationView />
-        </DataTemplate>
-        <DataTemplate x:Key="CreateAccountViewTemplate" 
-                      DataType="{x:Type vm:CreateAccountViewModel}">
-            <view:CreateAccountView />
-        </DataTemplate>
+  
     </Window.Resources>
     <Grid>
-        <ContentControl Content="{Binding }">
-            <ContentControl.Style>
-                <Style TargetType="{x:Type ContentControl}">
-                    <Setter Property="ContentTemplate" Value="{StaticResource LoginViewTemplate}" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding SwitchView}" Value="1">
-                            <Setter Property="ContentTemplate" Value="{StaticResource RegistrationViewTemplate}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding SwitchView}" Value="2">
-                            <Setter Property="ContentTemplate" Value="{StaticResource CreateAccountViewTemplate}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ContentControl.Style>
+        <ContentControl Content="{Binding ChildViewModel }">
+            <ContentControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                                <view:LoginView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:RegistrationViewModel}">
+                                <view:RegistrationView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:CreateAccountViewModel}">
+                                <view:CreateAccountView />
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </DataTemplate>                
+            </ContentControl.ContentTemplate>
         </ContentControl>
     </Grid>
 </Window>

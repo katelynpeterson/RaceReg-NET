@@ -69,6 +69,8 @@ namespace RaceReg.ViewModel
         }
 
         private RelayCommand refreshAffiliations;
+        private readonly MainWindowViewModel mainWindowViewModel;
+
         public RelayCommand RefreshAffiliations => refreshAffiliations ?? (refreshAffiliations = new RelayCommand(
             () =>
             {
@@ -87,6 +89,8 @@ namespace RaceReg.ViewModel
         }
 
         //Default constructor
-        public CreateAccountViewModel() : this(new Database()) { }
+        public CreateAccountViewModel(MainWindowViewModel mainWindowViewModel) : this(new Database()) {
+            this.mainWindowViewModel = mainWindowViewModel ?? throw new ArgumentNullException(nameof(mainWindowViewModel));
+        }
     }
 }

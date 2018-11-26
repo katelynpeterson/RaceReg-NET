@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using RaceReg.Helpers;
 using RaceReg.Model;
 using RaceReg.ViewModel;
@@ -21,13 +22,21 @@ namespace Tests
             var testDialogService = new TestDialogService();
 
             var mainViewModel = new RegistrationViewModel(testDB, testDialogService);
+
+
+            var dbMock = new Mock<IRaceRegDB>();
+            dbMock.Setup(m => m.RefreshAffiliations()).ReturnsAsync(new List<Affiliation>());
+            //dbMock.Setup(m=>m.SaveParticipant(It.IsAny<Participant>()))
+
+            var main2 = new RegistrationViewModel(dbMock.Object, testDialogService);
+
         }
 
         private class TestDB : IRaceRegDB
         {
-            public Task<IEnumerable<Affiliation>> RefreshAffiliations()
+            public async Task<IEnumerable<Affiliation>> RefreshAffiliations()
             {
-                throw new NotImplementedException();
+                return await Task.FromResult(new List<Affiliation>());
             }
 
             public Task<IEnumerable<Participant>> RefreshParticipants()

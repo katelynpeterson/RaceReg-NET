@@ -7,9 +7,6 @@
              xmlns:vm="clr-namespace:RaceReg.ViewModel;assembly=RaceReg"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vm:CreateAccountViewModel />
-    </UserControl.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">

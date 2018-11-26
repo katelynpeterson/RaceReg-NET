@@ -80,6 +80,11 @@ namespace RaceReg.ViewModel
         //Default constructor
         public RegistrationViewModel() : this(new Database(), new DialogService()) { }
 
+        public RegistrationViewModel(MainWindowViewModel mainWindowViewModel)
+        {
+            this.mainWindowViewModel = mainWindowViewModel;
+        }
+
         public async void QueryDatabase()
         {
             var getAffiliations = await _database.RefreshAffiliations().ConfigureAwait(true);
@@ -125,6 +130,8 @@ namespace RaceReg.ViewModel
             ));
 
         private RelayCommand refreshItems;
+        private MainWindowViewModel mainWindowViewModel;
+
         public RelayCommand RefreshItems => refreshItems ?? (refreshItems = new RelayCommand(
             () =>
             {
