@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using RaceReg.Helpers;
 using RaceReg.Model;
 using System.Collections.ObjectModel;
@@ -70,6 +71,7 @@ namespace RaceReg.ViewModel
         }
 
         //Default constructor
+        [PreferredConstructor]
         public ManagementViewModel() : this(new Database(), new DialogService()) { }
 
         private ObservableCollection<ChildControl> childViewModels;

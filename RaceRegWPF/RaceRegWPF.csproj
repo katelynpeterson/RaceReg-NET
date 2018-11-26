@@ -157,12 +157,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RaceReg\RaceReg.csproj">
-      <Project>{3bd72779-14b8-4b81-8a5d-5088340c46b8}</Project>
-      <Name>RaceReg</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\addicon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -191,6 +185,12 @@
     <Resource Include="Resources\track-corner-add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RaceReg\RaceReg.csproj">
+      <Project>{3bd72779-14b8-4b81-8a5d-5088340c46b8}</Project>
+      <Name>RaceReg</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

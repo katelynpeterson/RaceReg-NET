@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight;
 
 namespace RaceReg.ViewModel
 {
-    class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         private int _switchView;
         public int SwitchView

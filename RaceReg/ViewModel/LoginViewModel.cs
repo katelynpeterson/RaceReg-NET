@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RaceReg.ViewModel
 {
-    class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
 
     }
