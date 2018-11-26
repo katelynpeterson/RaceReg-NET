@@ -10,7 +10,7 @@ namespace Tests
 {
 
     [TestFixture]
-    public class ViewModelTests
+    public class RegistrationViewModelTests
     {
         [Test]
         public void TestMethod1()
@@ -20,7 +20,7 @@ namespace Tests
             var testDB = new TestDB();
             var testDialogService = new TestDialogService();
 
-            var mainViewModel = new ManagementViewModel(testDB, testDialogService);
+            var mainViewModel = new RegistrationViewModel(testDB, testDialogService);
         }
 
         private class TestDB : IRaceRegDB

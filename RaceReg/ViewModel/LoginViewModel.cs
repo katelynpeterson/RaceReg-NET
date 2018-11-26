@@ -15,6 +15,25 @@ namespace RaceReg.ViewModel
         private PasswordRelayCommand createAccountCommand;
         public PasswordRelayCommand CreateAccountCommand => createAccountCommand ?? (createAccountCommand = new PasswordRelayCommand(Login));
 
+        private RelayCommand exitCommand;
+        public RelayCommand ExitCommand => exitCommand ?? (exitCommand = new RelayCommand(
+            () =>
+            {
+                Console.WriteLine("Program is closing now.");
+
+                //Clean up program here!!
+
+                Environment.Exit(0);
+            }
+            ));
+
+        private RelayCommand aboutCommand;
+        public RelayCommand AboutCommand => aboutCommand ?? (aboutCommand = new RelayCommand(
+            () =>
+            {
+                throw new NotImplementedException();
+            }
+            ));
 
         private void Login(object parameter)
         {
