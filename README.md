@@ -21,7 +21,7 @@ You are the .NET development repository for RaceReg. RaceReg orginally started a
 There are multiple projects within this solution. You can open this solution in VisualStudio to view all the projects. The projects are including (or will include):
 
 * WPF Application (Windows)
-* UWP Application (Univeral Windows) [In Progress]
+* UWP Application (Univeral Windows) (TBA)
 * Avalonia Application (.NET Core Cross Platform GUI Application) (TBA)
 * OOUI Application (.NET Core ASP.NET application using Xamarin Forms) (TBA)
 * iOS Application (TBA)
