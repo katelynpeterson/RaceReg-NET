@@ -10,7 +10,7 @@
     <Application.Resources>
     <ResourceDictionary>
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
-            <vm:MainViewModel x:Key="Main" />
+            <vm:MainWindowViewModel x:Key="Main" />
         </ResourceDictionary>
   </Application.Resources>
 </Application>

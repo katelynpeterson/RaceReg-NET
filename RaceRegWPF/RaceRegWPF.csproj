@@ -68,6 +68,7 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -91,6 +92,12 @@
     <Compile Include="View\AllParticipantView.xaml.cs">
       <DependentUpon>AllParticipantView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagementView.xaml.cs">
+      <DependentUpon>ManagementView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ParticipantView.xaml.cs">
       <DependentUpon>ParticipantView.xaml</DependentUpon>
     </Compile>
@@ -110,6 +117,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AllParticipantView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagementView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ParticipantView.xaml">

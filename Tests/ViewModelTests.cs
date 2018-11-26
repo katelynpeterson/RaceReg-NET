@@ -20,7 +20,7 @@ namespace Tests
             var testDB = new TestDB();
             var testDialogService = new TestDialogService();
 
-            var mainViewModel = new MainViewModel(testDB, testDialogService);
+            var mainViewModel = new ManagementViewModel(testDB, testDialogService);
         }
 
         private class TestDB : IRaceRegDB

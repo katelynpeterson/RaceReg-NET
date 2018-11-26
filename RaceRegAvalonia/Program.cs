@@ -11,7 +11,7 @@ namespace RaceRegAvalonia
     {
         static void Main(string[] args)
         {
-            BuildAvaloniaApp().Start<MainWindow>(() => new MainViewModel());
+            BuildAvaloniaApp().Start<MainWindow>(() => new ManagementViewModel());
         }
 
         public static AppBuilder BuildAvaloniaApp()

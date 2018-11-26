@@ -19,7 +19,7 @@ namespace RaceReg.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public class ManagementViewModel : ViewModelBase
     {
         private IRaceRegDB _database;
         private IDialogService _dialogService;
@@ -27,7 +27,7 @@ namespace RaceReg.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IRaceRegDB RaceRegDB,
+        public ManagementViewModel(IRaceRegDB RaceRegDB,
             IDialogService dialogService)
         {
             ////if (IsInDesignMode)
@@ -70,7 +70,7 @@ namespace RaceReg.ViewModel
         }
 
         //Default constructor
-        public MainViewModel() : this(new Database(), new DialogService()) { }
+        public ManagementViewModel() : this(new Database(), new DialogService()) { }
 
         private ObservableCollection<ChildControl> childViewModels;
         public ObservableCollection<ChildControl> ChildViewModels

@@ -41,14 +41,14 @@ namespace RaceReg.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<ManagementViewModel>();
         }
 
-        public MainViewModel Main
+        public ManagementViewModel Main
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
+                return ServiceLocator.Current.GetInstance<ManagementViewModel>();
             }
         }
 

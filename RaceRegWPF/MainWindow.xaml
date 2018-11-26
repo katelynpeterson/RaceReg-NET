@@ -8,119 +8,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="680" Width="800"
         DataContext="{Binding Source={StaticResource Main}}">
-    <DockPanel>
-        <Ribbon DockPanel.Dock="Top">
-
-            <RibbonTab Header="Home">
-                <RibbonGroup Header="Meets">
-                    <RibbonButton Label="Add Meet"
-                                  LargeImageSource="/Resources/track-corner-add.png"
-                                  ToolTipTitle="Add Meet Editor Screen."
-                                  ToolTipDescription="Add a new tab to create new meet."
-                                  Command="{Binding AddParticipantView}"/>
-                    <RibbonButton Label="View Meets"
-                                  LargeImageSource="/Resources/track-corner.png"
-                                  ToolTipTitle="Add Meet View Screen."
-                                  ToolTipDescription="Add a new tab to view meets."
-                                  Command="{Binding AddParticipantView}"/>
-                </RibbonGroup>
-                <RibbonGroup Header="Participants">
-                    <RibbonButton Label="Add Participant"
-                                  LargeImageSource="/Resources/femalerunner-add.png"
-                                  ToolTipTitle="Add Participant Editor Screen."
-                                  ToolTipDescription="Add a new tab to create new participant."
-                                  Command="{Binding AddParticipantView}"/>
-                    <RibbonButton Label="View Participants"
-                                  LargeImageSource="/Resources/femalerunner.png"
-                                  ToolTipTitle="Add Participant View Screen."
-                                  ToolTipDescription="Add a new tab to view meet participants."
-                                  Command="{Binding AddAllParticipantsView}"/>
-                </RibbonGroup>
-                <RibbonGroup Header="Refresh">
-                    <RibbonButton Label="Refresh Items"
-                                  LargeImageSource="/Resources/refresh.png"
-                                  ToolTipTitle="Refresh RaceReg Items"
-                                  ToolTipDescription="Refresh all meet and participant information from the RaceReg servers."
-                                  Command="{Binding RefreshItems}"/>
-                </RibbonGroup>
-            </RibbonTab>
-        </Ribbon>
-
-        <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem Content="RaceReg Registration" />
-            <Separator></Separator>
-            <StatusBarItem Content="{Binding StatusMessage}" />
-        </StatusBar>
-
-        <TabControl ItemsSource="{Binding ChildViewModels}" SelectedItem="{Binding SelectedChildViewModel}">
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Header}" />
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                <DataTemplate>
-                    <ContentControl Content="{Binding ViewModel}">
-                        <ContentControl.Resources>
-                            <DataTemplate DataType="{x:Type vm:ParticipantViewModel}">
-                                <view:ParticipantView />
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:AllParticipantViewModel}">
-                                <view:AllParticipantView />
-                            </DataTemplate>
-                        </ContentControl.Resources>
-                    </ContentControl>
-                </DataTemplate>
-            </TabControl.ContentTemplate>
-        </TabControl>
-    </DockPanel>
-    <!--
-    <StackPanel>
-        <DataGrid ItemsSource="{Binding Participants}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
-                <DataGridTextColumn Header="Affiliation" Binding="{Binding Affiliation.Abbreviation}"/>
-                <DataGridTextColumn Header="Birthdate" Binding="{Binding BirthDate}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </StackPanel>
-    -->
-
-    <!--
-    <DockPanel>
-            <ToolBar DockPanel.Dock="Top">
-                <Button Content="Save Racer" />
-            </ToolBar>
-            <Grid DockPanel.Dock="Bottom">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name:" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name:" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="Affiliation:" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="Date of Birth:" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="4" Text="Gender:" HorizontalAlignment="Center"/>
-            </Grid>
-            <DataGrid ItemsSource="{Binding Participants}" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
-                    <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
-                    <DataGridTextColumn Header="Affiliation" Binding="{Binding Affiliation.Abbreviation}" />
-                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" />
-                    <DataGridTextColumn Header="Birth Date" Binding="{Binding BirthDate}" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </DockPanel>
-    -->
+    <Window.Resources>
+        <DataTemplate x:Key="LoginViewTemplate" 
+                      DataType="{x:Type vm:LoginViewModel}">
+            <view:LoginView />
+        </DataTemplate>
+        <DataTemplate x:Key="ManagementViewTemplate" 
+                      DataType="{x:Type vm:ManagementViewModel}">
+            <view:ManagementView />
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <ContentControl Content="{Binding }">
+            <ContentControl.Style>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="ContentTemplate" Value="{StaticResource LoginViewTemplate}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SwitchView}" Value="1">
+                            <Setter Property="ContentTemplate" Value="{StaticResource ManagementViewTemplate}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </Grid>
 </Window>
