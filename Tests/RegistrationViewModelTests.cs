@@ -5,6 +5,7 @@ using RaceReg.Model;
 using RaceReg.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Threading.Tasks;
 
 namespace Tests
@@ -21,19 +22,31 @@ namespace Tests
             var testDB = new TestDB();
             var testDialogService = new TestDialogService();
 
-            var mainViewModel = new RegistrationViewModel(testDB, testDialogService);
+            var mainWindowViewModel = new MainWindowViewModel();
+
+            var registrationViewModel = new RegistrationViewModel(mainWindowViewModel, testDB, testDialogService);
 
 
             var dbMock = new Mock<IRaceRegDB>();
             dbMock.Setup(m => m.RefreshAffiliations()).ReturnsAsync(new List<Affiliation>());
             //dbMock.Setup(m=>m.SaveParticipant(It.IsAny<Participant>()))
 
-            var main2 = new RegistrationViewModel(dbMock.Object, testDialogService);
+            var main2 = new RegistrationViewModel(mainWindowViewModel, dbMock.Object, testDialogService);
 
         }
 
         private class TestDB : IRaceRegDB
         {
+            public Task<Affiliation> AddNewAffiliationAsync(Affiliation affiliation)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task<User> GrabUserDetailsAsync(string username, SecureString password)
+            {
+                throw new NotImplementedException();
+            }
+
             public async Task<IEnumerable<Affiliation>> RefreshAffiliations()
             {
                 return await Task.FromResult(new List<Affiliation>());

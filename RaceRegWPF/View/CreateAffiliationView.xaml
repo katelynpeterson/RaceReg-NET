@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="RaceRegWPF.View.CreateAffiliationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RaceRegWPF.View"
+             xmlns:vm="clr-namespace:RaceReg.ViewModel;assembly=RaceReg"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Exit" 
+                          Command="{Binding ExitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About"
+                          Command="{Binding AboutCommand}"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    Margin="10"
+                    HorizontalAlignment="Center">
+            <Button Content="&lt;-- Return To Create Account"
+                    Margin="10"
+                    Height="50"
+                    Width="225"
+                    FontSize="16"
+                    Command="{Binding BackToCreateAccountCommand}"/>
+            <Button Content="Create Affiliation"
+                    Margin="10"
+                    Height="50"
+                    Width="200"
+                    FontSize="16"
+                    Command="{Binding CreateNewAffiliation}"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical" 
+                        HorizontalAlignment="Center">
+                <Image Source="../Resources/RaceRegLogo_TimingAndRegistration.png"
+                      Height="50"
+                      Width="50"/>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Create RaceReg Affiliation"
+                               FontSize="32" 
+                               HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <TextBlock Text="Affiliation Name:"
+                           FontSize="16"
+                           Margin="10"
+                           Width="200"/>
+                        <TextBox Text="{Binding Affiliation.Name}"
+                         FontSize="16"
+                         Margin="10"
+                         Width="200"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <TextBlock Text="Abbreivation (2-5 letters):"
+                           FontSize="16"
+                           Margin="10"
+                           Width="200"/>
+                        <TextBox Text="{Binding Affiliation.Abbreviation}"
+                         FontSize="16"
+                         Margin="10"
+                         Width="200"/>
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock HorizontalAlignment="Center">
+                    <TextBlock.Inlines>
+                        <Run Text="{Binding AffiliationMessage}"
+                       FontSize="14" >
+                            <Run.Foreground>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="Red" />
+                                </LinearGradientBrush>
+                            </Run.Foreground>
+                        </Run>
+                    </TextBlock.Inlines>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

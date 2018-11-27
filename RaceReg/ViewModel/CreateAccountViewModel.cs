@@ -28,19 +28,6 @@ namespace RaceReg.ViewModel
             }
         }
 
-        public ObservableCollection<Affiliation> affiliations;
-        public ObservableCollection<Affiliation> Affiliations
-        {
-            get
-            {
-                return affiliations;
-            }
-            set
-            {
-                Set(ref affiliations, value);
-            }
-        }
-
         public enum GenderType { Male, Female, Other };
         public IEnumerable<GenderType> GenderTypes
         {
@@ -66,16 +53,23 @@ namespace RaceReg.ViewModel
             }
             ));
 
+        private RelayCommand createNewAffiliation;
+        public RelayCommand CreateNewAffiliation => createNewAffiliation ?? (createNewAffiliation = new RelayCommand(
+            () =>
+            {
+                mainWindow.SwitchToCreateAffiliationView();
+            }
+            ));
+
         public async void RefreshAffiliationsAsync()
         {
             var getAffiliations = await _database.RefreshAffiliations().ConfigureAwait(true);
-            Affiliations.Clear();
+            mainWindow.Affiliations.Clear();
 
             foreach (Affiliation affiliation in getAffiliations)
             {
-                Affiliations.Add(affiliation);
+                mainWindow.Affiliations.Add(affiliation);
             }
-            Affiliations = new ObservableCollection<Affiliation>(getAffiliations);
         }
 
         private RelayCommand refreshAffiliations;
@@ -90,7 +84,6 @@ namespace RaceReg.ViewModel
 
         public CreateAccountViewModel(MainWindowViewModel mainWindowViewModel, IRaceRegDB db, IDialogService dialogService) : base(mainWindowViewModel)
         {
-            Affiliations = new ObservableCollection<Affiliation>();
             User = new User();
 
             _database = db;
@@ -100,6 +93,6 @@ namespace RaceReg.ViewModel
         }
 
         //Default constructor
-        public CreateAccountViewModel(MainWindowViewModel mainWindowViewModel) : this(mainWindowViewModel, new Database(), new DialogService()) { }
+        public CreateAccountViewModel(MainWindowViewModel mainWindowViewModel) : this(mainWindowViewModel, new RaceRegDatabase(), new DialogService()) { }
     }
 }

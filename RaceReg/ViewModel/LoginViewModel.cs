@@ -48,7 +48,7 @@ namespace RaceReg.ViewModel
         }
 
         //Default constructor
-        public LoginViewModel(MainWindowViewModel mainWindowViewModel) : this(mainWindowViewModel, new Database(), new DialogService()) { }
+        public LoginViewModel(MainWindowViewModel mainWindowViewModel) : this(mainWindowViewModel, new RaceRegDatabase(), new DialogService()) { }
 
         private PasswordRelayCommand loginCommand;
         public PasswordRelayCommand LoginCommand => loginCommand ?? (loginCommand = new PasswordRelayCommand(LoginAsync));
