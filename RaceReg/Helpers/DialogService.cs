@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace RaceReg.Helpers
 {
@@ -11,7 +12,7 @@ namespace RaceReg.Helpers
     {
         public void ShowMessage(string message)
         {
-            //MessageBox.Show(message);
+            MessageBox.Show(message);
         }
     }
 }

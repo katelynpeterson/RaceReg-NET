@@ -18,6 +18,7 @@ namespace RaceReg.ViewModel
         }
 
         private LoginViewModel login;
+        private AboutViewModel about;
         private CreateAccountViewModel createAccount;
         private object _childViewModel;
         private RegistrationViewModel _registration;
@@ -25,6 +26,7 @@ namespace RaceReg.ViewModel
 
         public object ChildViewModel { get => _childViewModel; set => Set(ref _childViewModel, value); }
         public LoginViewModel Login { get => login; set => Set(ref login, value); }
+        public AboutViewModel About { get => about; set => Set(ref about, value); }
         public CreateAccountViewModel CreateAccount { get => createAccount; set => Set(ref createAccount, value); }
         public RegistrationViewModel Registration { get => _registration; set => Set(ref _registration, value); }
         public User CurrentUser { get => currentUser; set => Set(ref currentUser, value); }

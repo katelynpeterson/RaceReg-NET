@@ -15,7 +15,7 @@
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_About"
-                          Command="{Binding LoginCommand}"/>
+                          Command="{Binding AboutMenuCommand}"/>
             </MenuItem>
         </Menu>
         <!-- Show the number for the current view on the mainwindow -->
@@ -57,6 +57,7 @@
                          Margin="10"
                          Width="200"/>
                     </StackPanel>
+                    <!--
                     <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                         <TextBlock Text="Password:"
@@ -68,6 +69,7 @@
                          Margin="10"
                          Width="200"/>
                     </StackPanel>
+                    -->
                 </StackPanel>
             </StackPanel>
         </StackPanel>

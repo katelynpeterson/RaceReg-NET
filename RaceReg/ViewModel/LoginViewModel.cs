@@ -72,6 +72,16 @@ namespace RaceReg.ViewModel
             }
             ));
 
+        private RelayCommand aboutMenuCommand;
+        public RelayCommand AboutMenuCommand => aboutMenuCommand ?? (aboutMenuCommand = new RelayCommand(
+            () =>
+            {
+                //Change to Create Account View view
+                mainWindow.ChildViewModel = mainWindow.AboutMenu;
+            }
+            ));
+        
+
         private async void LoginAsync(object parameter)
         {
             var passwordContainer = parameter as IHavePassword;
