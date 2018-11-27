@@ -8,9 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="680" Width="800"
         DataContext="{Binding Source={StaticResource Main}}">
-    <Window.Resources>
-  
-    </Window.Resources>
     <Grid>
         <ContentControl Content="{Binding ChildViewModel }">
             <ContentControl.ContentTemplate>
