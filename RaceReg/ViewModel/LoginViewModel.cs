@@ -4,20 +4,44 @@ using System;
 using RaceReg.Helpers;
 using System.Collections.Generic;
 using System.Text;
+using RaceReg.Model;
 
 namespace RaceReg.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
-        public LoginViewModel(MainWindowViewModel mainWindow)
-        {
-            this.mainWindow = mainWindow ?? throw new ArgumentNullException(nameof(mainWindow));
-        }
-        private PasswordRelayCommand loginCommand;
-        public PasswordRelayCommand LoginCommand => loginCommand ?? (loginCommand = new PasswordRelayCommand(Login));
+        private readonly MainWindowViewModel mainWindow;
+        private IRaceRegDB _database;
+        private IDialogService _dialogService;
 
-        private PasswordRelayCommand createAccountCommand;
-        public PasswordRelayCommand CreateAccountCommand => createAccountCommand ?? (createAccountCommand = new PasswordRelayCommand(Login));
+        private string _username;
+        public String Username
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                Set(ref _username, value);
+            }
+        }
+
+        public LoginViewModel(IRaceRegDB RaceRegDB,
+            IDialogService dialogService)
+        {
+            _database = RaceRegDB;
+            _dialogService = dialogService;
+        }
+
+        //Default constructor
+        public LoginViewModel(MainWindowViewModel mainWindowViewModel) : this(new Database(), new DialogService())
+        {
+            this.mainWindow = mainWindowViewModel ?? throw new ArgumentNullException(nameof(mainWindowViewModel));
+        }
+
+        private PasswordRelayCommand loginCommand;
+        public PasswordRelayCommand LoginCommand => loginCommand ?? (loginCommand = new PasswordRelayCommand(LoginAsync));
 
         private RelayCommand exitCommand;
         public RelayCommand ExitCommand => exitCommand ?? (exitCommand = new RelayCommand(
@@ -32,27 +56,41 @@ namespace RaceReg.ViewModel
             ));
 
         private RelayCommand aboutCommand;
-        private readonly MainWindowViewModel mainWindow;
-
         public RelayCommand AboutCommand => aboutCommand ?? (aboutCommand = new RelayCommand(
             () =>
             {
+                throw new NotImplementedException();
+            }
+            ));
+
+        private RelayCommand createAccountCommand;
+        public RelayCommand CreateAccountCommand => createAccountCommand ?? (createAccountCommand = new RelayCommand(
+            () =>
+            {
+                //Change to Create Account View view
                 mainWindow.ChildViewModel = mainWindow.CreateAccount;
             }
             ));
 
-        private void Login(object parameter)
+        private async void LoginAsync(object parameter)
         {
             var passwordContainer = parameter as IHavePassword;
             if(passwordContainer != null)
             {
                 var secureString = passwordContainer.Password;
-                //Do stuff with the password
+                //Do stuff with the password - not currently implemented.
             }
 
-            //Change to RegistrationView
+            //Get user details (does not support password)
+            mainWindow.CurrentUser = await _database.GrabUserDetailsAsync(Username, null);
 
-            throw new NotImplementedException();
+            if(mainWindow.CurrentUser.Id <= 0)
+            {
+                throw new Exception("USER HAS NO ID. DATABASE DIDN'T RESPOND OR DIDN'T RESPOND CORRECTLY.");
+            }
+
+            //Change to RegistrationView after login
+            mainWindow.ChildViewModel = mainWindow.Registration;
         }
     }
 }

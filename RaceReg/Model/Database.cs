@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -156,5 +157,68 @@ namespace RaceReg.Model
             }
         }
 
+        /**
+         * Developer note: THIS METHOD DOES NOT SUPPORT PASSWORD CHECKING YET
+         */
+        public async Task<User> GrabUserDetailsAsync(string username, SecureString password)
+        {
+            var user = new User();
+            var affiliationId = -1;
+            var participantId = -1;
+            var affiliations = new ObservableCollection<Affiliation>(await RefreshAffiliations());
+            var participants = new ObservableCollection<Participant>(await RefreshParticipants());
+
+            string getUserDetails = "SELECT * FROM " + Constants.USER + " WHERE username = @username;";
+
+            using (var connection1 = new MySqlConnection(Constants.CONNECTION_STRING))
+            {
+                await connection1.OpenAsync();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = connection1;
+                    cmd.CommandText = getUserDetails;
+                    cmd.Prepare();
+
+                    cmd.Parameters.AddWithValue("@username", username);
+                    //Add password parameter in the near future
+
+                    var reader = await cmd.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        user.Id = reader.GetInt32(0);
+                        user.FirstName = reader.GetString(1);
+                        user.LastName = reader.GetString(2);
+                        affiliationId = reader.GetInt32(3);
+                        user.Email = reader.GetString(5);
+
+                        if(!(await reader.IsDBNullAsync(6)))
+                        {
+                            participantId = reader.GetInt32(6);
+                        }
+                    }
+
+                    //In the future, this should be connected to a list of affiliations in that the whole program shares
+                    foreach (Affiliation tempAffiliation in affiliations)
+                    {
+                        if (tempAffiliation.Id == affiliationId)
+                        {
+                            user.Affiliation = tempAffiliation;
+                            break;
+                        }
+                    }
+
+                    //In the future, this should be connected to a list of participants in that the whole program shares
+                    foreach (Participant participant in participants)
+                    {
+                        if (participant.Id == participantId)
+                        {
+                            user.Participant = participant;
+                            break;
+                        }
+                    }
+                }
+            }
+            return user;
+        }
     }
 }

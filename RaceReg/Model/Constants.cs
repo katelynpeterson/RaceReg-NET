@@ -22,6 +22,6 @@ namespace RaceReg.Model
         public const string MEET_EVENT = "MeetEvent";
         public const string EVENT = "Event";
         public const string MEET = "Meet";
-
+        public const string USER = "User";
     }
 }

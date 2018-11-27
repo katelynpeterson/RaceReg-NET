@@ -34,10 +34,5 @@ namespace RaceRegWPF.View
                 return UserPassword.SecurePassword;
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

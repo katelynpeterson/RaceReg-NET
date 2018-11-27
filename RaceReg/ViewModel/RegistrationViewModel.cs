@@ -78,11 +78,8 @@ namespace RaceReg.ViewModel
         }
 
         //Default constructor
-        public RegistrationViewModel() : this(new Database(), new DialogService()) { }
-
-        public RegistrationViewModel(MainWindowViewModel mainWindowViewModel)
-        {
-            this.mainWindowViewModel = mainWindowViewModel;
+        public RegistrationViewModel(MainWindowViewModel mainWindowViewModel) : this(new Database(), new DialogService()) {
+            this.mainWindowViewModel = mainWindowViewModel ?? throw new ArgumentNullException(nameof(mainWindowViewModel));
         }
 
         public async void QueryDatabase()

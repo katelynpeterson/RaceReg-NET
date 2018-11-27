@@ -8,9 +8,6 @@
              xmlns:view="clr-namespace:RaceRegWPF.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vm:RegistrationViewModel />
-    </UserControl.DataContext>
     <DockPanel>
         <Ribbon DockPanel.Dock="Top">
 

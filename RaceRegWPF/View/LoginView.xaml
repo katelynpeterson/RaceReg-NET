@@ -15,7 +15,7 @@
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_About"
-                          Command="{Binding AboutCommand}"/>
+                          Command="{Binding LoginCommand}"/>
             </MenuItem>
         </Menu>
         <!-- Show the number for the current view on the mainwindow -->
@@ -37,7 +37,7 @@
                     Height="100"
                     Width="200"
                     FontSize="24"
-                    Command="{Binding CreateAccountCommand}"/>
+                    Command="{Binding CreateAccountCommand}" />
         </StackPanel>
         <StackPanel VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" 
