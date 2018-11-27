@@ -77,7 +77,7 @@ namespace RaceReg.ViewModel
             () =>
             {
                 //Change to Create Account View view
-                mainWindow.ChildViewModel = mainWindow.AboutMenu;
+                mainWindow.ChildViewModel = mainWindow.About;
             }
             ));
         

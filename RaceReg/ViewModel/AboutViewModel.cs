@@ -17,11 +17,11 @@ namespace RaceReg.ViewModel
             this.mainWindow = mainWindowViewModel ?? throw new ArgumentNullException(nameof(mainWindowViewModel));
         }
 
-        private RelayCommand command;
-        public RelayCommand Command => command ?? (command = new RelayCommand(
+        private RelayCommand visitWebsiteCommand;
+        public RelayCommand VisitWebsiteCommand => visitWebsiteCommand ?? (visitWebsiteCommand = new RelayCommand(
             () =>
             {
-                
+                System.Diagnostics.Process.Start("https://racereg.run");
             }
             ));
     }

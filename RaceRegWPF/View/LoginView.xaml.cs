@@ -31,7 +31,8 @@ namespace RaceRegWPF.View
         {
             get
             {
-                return UserPassword.SecurePassword;
+                //return UserPassword.SecurePassword;
+                return null;
             }
         }
     }
