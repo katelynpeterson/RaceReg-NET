@@ -8,11 +8,23 @@ using RaceReg.Model;
 
 namespace RaceReg.ViewModel
 {
-    public class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ChildView
     {
-        private readonly MainWindowViewModel mainWindow;
         private IRaceRegDB _database;
         private IDialogService _dialogService;
+
+        private string _loginMessage;
+        public String LoginMessage
+        {
+            get
+            {
+                return _loginMessage;
+            }
+            set
+            {
+                Set(ref _loginMessage, value);
+            }
+        }
 
         private string _username;
         public String Username
@@ -27,41 +39,19 @@ namespace RaceReg.ViewModel
             }
         }
 
-        public LoginViewModel(IRaceRegDB RaceRegDB,
-            IDialogService dialogService)
+        public LoginViewModel(MainWindowViewModel mainWindowViewModel, IRaceRegDB RaceRegDB, IDialogService dialogService) : base(mainWindowViewModel)
         {
             _database = RaceRegDB;
             _dialogService = dialogService;
+
+            LoginMessage = "";
         }
 
         //Default constructor
-        public LoginViewModel(MainWindowViewModel mainWindowViewModel) : this(new Database(), new DialogService())
-        {
-            this.mainWindow = mainWindowViewModel ?? throw new ArgumentNullException(nameof(mainWindowViewModel));
-        }
+        public LoginViewModel(MainWindowViewModel mainWindowViewModel) : this(mainWindowViewModel, new Database(), new DialogService()) { }
 
         private PasswordRelayCommand loginCommand;
         public PasswordRelayCommand LoginCommand => loginCommand ?? (loginCommand = new PasswordRelayCommand(LoginAsync));
-
-        private RelayCommand exitCommand;
-        public RelayCommand ExitCommand => exitCommand ?? (exitCommand = new RelayCommand(
-            () =>
-            {
-                Console.WriteLine("Program is closing now.");
-
-                //Clean up program here!!
-
-                Environment.Exit(0);
-            }
-            ));
-
-        private RelayCommand aboutCommand;
-        public RelayCommand AboutCommand => aboutCommand ?? (aboutCommand = new RelayCommand(
-            () =>
-            {
-                mainWindow.SwitchToAboutView();
-            }
-            ));
 
         private RelayCommand createAccountCommand;
         public RelayCommand CreateAccountCommand => createAccountCommand ?? (createAccountCommand = new RelayCommand(
@@ -94,11 +84,13 @@ namespace RaceReg.ViewModel
 
             if(mainWindow.CurrentUser.Id <= 0)
             {
-                throw new Exception("USER HAS NO ID. DATABASE DIDN'T RESPOND OR DIDN'T RESPOND CORRECTLY.");
+                LoginMessage = "No username exists. Please Create An Account.";
             }
-
-            //Change to RegistrationView after login
-            mainWindow.SwitchToRegistrationView();
+            else
+            {
+                //Change to RegistrationView after login
+                mainWindow.SwitchToRegistrationView();
+            }
         }
     }
 }

@@ -8,22 +8,12 @@ using RaceReg.Model;
 
 namespace RaceReg.ViewModel
 {
-    public class AboutViewModel : ViewModelBase
+    public class AboutViewModel : ChildView
     {
-        private readonly MainWindowViewModel mainWindow;
-
-        public AboutViewModel(MainWindowViewModel mainWindowViewModel)
+        public AboutViewModel(MainWindowViewModel mainWindowViewModel) : base(mainWindowViewModel)
         {
-            this.mainWindow = mainWindowViewModel ?? throw new ArgumentNullException(nameof(mainWindowViewModel));
-        }
 
-        private RelayCommand goBackCommand;
-        public RelayCommand GoBackCommand => goBackCommand ?? (goBackCommand = new RelayCommand(
-            () =>
-            {
-                mainWindow.SwitchToPreviousView();
-            }
-            ));
+        }
 
         private RelayCommand visitWebsiteCommand;
         public RelayCommand VisitWebsiteCommand => visitWebsiteCommand ?? (visitWebsiteCommand = new RelayCommand(

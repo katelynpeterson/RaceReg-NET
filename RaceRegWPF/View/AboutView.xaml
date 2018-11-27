@@ -15,8 +15,7 @@
                           Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="_About"
-                          Command="{Binding AboutCommand}"/>
+                
             </MenuItem>
         </Menu>
         <StackPanel DockPanel.Dock="Bottom"
@@ -47,6 +46,17 @@
                                FontSize="32" 
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="Timing, Results and Registration"
+                               FontSize="16" 
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 20"/>
+                    <TextBlock Text="RaceReg WPF Application for Windows"
+                               FontSize="16" 
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Created 2018 by Jackson Porter"
+                               FontSize="16" 
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 20"/>
+                    <TextBlock Text="Meet Management and Timing Software that is open-source and open-minded."
                                FontSize="16" 
                                HorizontalAlignment="Center"/>
                 </StackPanel>

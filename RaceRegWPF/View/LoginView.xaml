@@ -15,7 +15,7 @@
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_About"
-                          Command="{Binding AboutMenuCommand}"/>
+                          Command="{Binding AboutCommand}"/>
             </MenuItem>
         </Menu>
         <!-- Show the number for the current view on the mainwindow -->
@@ -72,6 +72,18 @@
                     -->
                 </StackPanel>
             </StackPanel>
+            <TextBlock HorizontalAlignment="Center">
+                <TextBlock.Inlines>
+                    <Run Text="{Binding LoginMessage}"
+                       FontSize="14" >
+                        <Run.Foreground>
+                            <LinearGradientBrush>
+                                <GradientStop Color="Red" />
+                            </LinearGradientBrush>
+                        </Run.Foreground>
+                    </Run>
+                </TextBlock.Inlines>
+            </TextBlock>
         </StackPanel>
     </DockPanel>
 </UserControl>

@@ -6,12 +6,14 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using System.Text;
 using GalaSoft.MvvmLight.Command;
+using RaceReg.Helpers;
 
 namespace RaceReg.ViewModel
 {
-    public class CreateAccountViewModel : ViewModelBase
+    public class CreateAccountViewModel : ChildView
     {
         private IRaceRegDB _database;
+        private IDialogService _dialogService;
 
         private User user;
         public User User
@@ -56,6 +58,14 @@ namespace RaceReg.ViewModel
             }
             ));
 
+        private RelayCommand backToLoginCommand;
+        public RelayCommand BackToLoginCommand => backToLoginCommand ?? (backToLoginCommand = new RelayCommand(
+            () =>
+            {
+                mainWindow.SwitchToLoginView();
+            }
+            ));
+
         public async void RefreshAffiliationsAsync()
         {
             var getAffiliations = await _database.RefreshAffiliations().ConfigureAwait(true);
@@ -78,19 +88,18 @@ namespace RaceReg.ViewModel
             }
             ));
 
-        public CreateAccountViewModel(IRaceRegDB db)
+        public CreateAccountViewModel(MainWindowViewModel mainWindowViewModel, IRaceRegDB db, IDialogService dialogService) : base(mainWindowViewModel)
         {
             Affiliations = new ObservableCollection<Affiliation>();
             User = new User();
 
             _database = db;
+            _dialogService = dialogService;
 
             RefreshAffiliationsAsync();
         }
 
         //Default constructor
-        public CreateAccountViewModel(MainWindowViewModel mainWindowViewModel) : this(new Database()) {
-            this.mainWindowViewModel = mainWindowViewModel ?? throw new ArgumentNullException(nameof(mainWindowViewModel));
-        }
+        public CreateAccountViewModel(MainWindowViewModel mainWindowViewModel) : this(mainWindowViewModel, new Database(), new DialogService()) { }
     }
 }

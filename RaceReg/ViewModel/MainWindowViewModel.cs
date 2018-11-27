@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using RaceReg.Model;
 
 namespace RaceReg.ViewModel
@@ -67,8 +68,5 @@ namespace RaceReg.ViewModel
         {
             SwitchView(Registration);
         }
-
-        
-
     }
 }

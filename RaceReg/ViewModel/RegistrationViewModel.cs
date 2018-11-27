@@ -10,7 +10,7 @@ using System.Text;
 
 namespace RaceReg.ViewModel
 {
-    public class RegistrationViewModel : ViewModelBase
+    public class RegistrationViewModel : ChildView
     {
         private IRaceRegDB _database;
         private IDialogService _dialogService;
@@ -64,8 +64,8 @@ namespace RaceReg.ViewModel
             }
         }
 
-        public RegistrationViewModel(IRaceRegDB RaceRegDB,
-            IDialogService dialogService)
+        public RegistrationViewModel(MainWindowViewModel mainWindowViewModel, IRaceRegDB RaceRegDB,
+            IDialogService dialogService) : base(mainWindowViewModel)
         {
             ChildViewModels = new ObservableCollection<ChildControl>();
 
@@ -78,9 +78,7 @@ namespace RaceReg.ViewModel
         }
 
         //Default constructor
-        public RegistrationViewModel(MainWindowViewModel mainWindowViewModel) : this(new Database(), new DialogService()) {
-            this.mainWindowViewModel = mainWindowViewModel ?? throw new ArgumentNullException(nameof(mainWindowViewModel));
-        }
+        public RegistrationViewModel(MainWindowViewModel mainWindowViewModel) : this(mainWindowViewModel, new Database(), new DialogService()) {}
 
         public async void QueryDatabase()
         {

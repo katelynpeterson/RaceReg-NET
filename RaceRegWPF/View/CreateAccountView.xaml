@@ -24,6 +24,12 @@
                     Orientation="Horizontal"
                     Margin="10"
                     HorizontalAlignment="Center">
+            <Button Content="&lt;-- Return To Login"
+                    Margin="10"
+                    Height="50"
+                    Width="200"
+                    FontSize="16"
+                    Command="{Binding BackToLoginCommand}"/>
             <Button Content="Create Account"
                     Margin="10"
                     Height="50"
@@ -94,6 +100,17 @@
                            Margin="10"
                            Width="200"/>
                         <TextBox Text="{Binding LastName}"
+                         FontSize="16"
+                         Margin="10"
+                         Width="200"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <TextBlock Text="Email:"
+                           FontSize="16"
+                           Margin="10"
+                           Width="200"/>
+                        <TextBox Text="{Binding Email}"
                          FontSize="16"
                          Margin="10"
                          Width="200"/>
