@@ -59,7 +59,7 @@ namespace RaceReg.ViewModel
         public RelayCommand AboutCommand => aboutCommand ?? (aboutCommand = new RelayCommand(
             () =>
             {
-                throw new NotImplementedException();
+                mainWindow.SwitchToAboutView();
             }
             ));
 
@@ -67,8 +67,7 @@ namespace RaceReg.ViewModel
         public RelayCommand CreateAccountCommand => createAccountCommand ?? (createAccountCommand = new RelayCommand(
             () =>
             {
-                //Change to Create Account View view
-                mainWindow.ChildViewModel = mainWindow.CreateAccount;
+                mainWindow.SwitchToCreateAccountView();
             }
             ));
 
@@ -76,8 +75,7 @@ namespace RaceReg.ViewModel
         public RelayCommand AboutMenuCommand => aboutMenuCommand ?? (aboutMenuCommand = new RelayCommand(
             () =>
             {
-                //Change to Create Account View view
-                mainWindow.ChildViewModel = mainWindow.About;
+                mainWindow.SwitchToAboutView();
             }
             ));
         
@@ -100,7 +98,7 @@ namespace RaceReg.ViewModel
             }
 
             //Change to RegistrationView after login
-            mainWindow.ChildViewModel = mainWindow.Registration;
+            mainWindow.SwitchToRegistrationView();
         }
     }
 }

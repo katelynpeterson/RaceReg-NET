@@ -23,6 +23,12 @@
                     Orientation="Horizontal"
                     Margin="10"
                     HorizontalAlignment="Center">
+            <Button Content="Go Back"
+                    Margin="10"
+                    Height="50"
+                    Width="200"
+                    FontSize="16"
+                    Command="{Binding GoBackCommand}"/>
             <Button Content="Visit Website"
                     Margin="10"
                     Height="50"
