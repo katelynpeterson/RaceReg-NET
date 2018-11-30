@@ -17,7 +17,7 @@ namespace Tests
         [Test]
         public void TestMethod1()
         {
-            Assert.Pass();
+            Assert.Fail();
 
             var testDB = new TestDB();
             var testDialogService = new TestDialogService();
@@ -26,12 +26,12 @@ namespace Tests
 
             var registrationViewModel = new RegistrationViewModel(mainWindowViewModel, testDB, testDialogService);
 
-            /** USING MOQ TO CREATE TEST DATABSE - FOR LATER DEVELOPMENT **/
-            //var dbMock = new Mock<IRaceRegDB>();
-            //dbMock.Setup(m => m.RefreshAffiliations()).ReturnsAsync(new List<Affiliation>());
-            ////dbMock.Setup(m=>m.SaveParticipant(It.IsAny<Participant>()))
 
-            //var main2 = new RegistrationViewModel(mainWindowViewModel, dbMock.Object, testDialogService);
+            var dbMock = new Mock<IRaceRegDB>();
+            dbMock.Setup(m => m.RefreshAffiliations()).ReturnsAsync(new List<Affiliation>());
+            //dbMock.Setup(m=>m.SaveParticipant(It.IsAny<Participant>()))
+
+            var main2 = new RegistrationViewModel(mainWindowViewModel, dbMock.Object, testDialogService);
 
         }
 
@@ -72,7 +72,7 @@ namespace Tests
         {
             public void ShowMessage(string message)
             {
-                //Do nothing
+                throw new NotImplementedException();
             }
         }
     }

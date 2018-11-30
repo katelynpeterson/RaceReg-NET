@@ -11,7 +11,7 @@ namespace Tests
         [Test]
         public void ParticipantViewModelTest1()
         {
-            Assert.Pass();
+            Assert.Fail();
         }
     }
 }
