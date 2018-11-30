@@ -2,6 +2,9 @@
 # RaceReg - Timing, Results and Registration
 ---
 ## RaceReg is a Race Registration and Timing Software. It is created and maintained for the intent for free use. 
+
+[![Build status](https://dev.azure.com/RaceReg/RaceReg/_apis/build/status/RaceReg-.NET%20Desktop-CI)](https://dev.azure.com/RaceReg/RaceReg/_build/latest?definitionId=-1)
+
 ## RaceReg .NET is now under development in multiple locations. 
 * [Azure DevOps](https://dev.azure.com/RaceReg/RaceReg)
 * [Github](https://github.com/jacksonporter/RaceReg-NET) (This location is a mirror of commits from Azure DevOps)
