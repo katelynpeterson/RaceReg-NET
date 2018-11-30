@@ -1,7 +1,7 @@
 # ![RaceReg Logo](https://github.com/jacksonporter/RaceReg-NET/raw/master/RaceRegWPF/Resources/RaceRegLogo_TimingAndRegistration.png)
 # RaceReg - Timing, Results and Registration
 ---
-## RaceReg is a Race Registration and Timing Software. It is created and maintained for the intent for free use. 
+**RaceReg is a Race Registration and Timing Software. It is created and maintained for the intent for free use.**
 
 [![Build status](https://dev.azure.com/RaceReg/RaceReg/_apis/build/status/RaceReg-.NET%20Desktop-CI)](https://dev.azure.com/RaceReg/RaceReg/_build/latest?definitionId=-1)
 
