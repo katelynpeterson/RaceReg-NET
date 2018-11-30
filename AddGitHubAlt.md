@@ -18,5 +18,5 @@
 
 `git push alt`
 
-If you have questions, please email: <jackson@jacksonporterjp.com>
+If you have questions, please email: <jackson.porter@racereg.run>
 
