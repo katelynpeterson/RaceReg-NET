@@ -10,7 +10,7 @@ using RaceReg.ViewModel;
 
 namespace Tests_Core
 {
-    public class TestDatabase
+    public class TestDatabase : IRaceRegDB
     {
         List<Affiliation> affiliations;
         List<Participant> participants;
@@ -64,6 +64,11 @@ namespace Tests_Core
         }
 
         public Task<string> Save(Participant updatedParticipant)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Participant> SaveParticipant(Participant updatedParticipant)
         {
             throw new NotImplementedException();
         }

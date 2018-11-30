@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using RaceReg.Helpers;
+using RaceReg.ViewModel;
 using System;
+using Tests_Core;
 
 namespace Tests
 {
@@ -13,7 +15,7 @@ namespace Tests
         {
             Assert.Pass();
 
-            var testDB = new TestDB();
+            var testDB = new TestDatabase();
             var testDialogService = new TestDialogService();
 
             var mainWindowViewModel = new MainWindowViewModel();
