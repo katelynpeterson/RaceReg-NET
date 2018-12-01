@@ -45,7 +45,7 @@ namespace RaceReg.ViewModel
 
             Login = new LoginViewModel(this);
             About = new AboutViewModel(this);
-            CreateAccount = new CreateAccountViewModel(this);
+            CreateAccount = new CreateAccountViewModel(this, _database, _dialogService);
             CreateAccount.Affiliations = this.Affiliations;
             Registration = new RegistrationViewModel(this);
             CreateAffiliation = new CreateAffiliationViewModel(this);
@@ -63,7 +63,7 @@ namespace RaceReg.ViewModel
 
             Login = new LoginViewModel(this, _database, _dialogService);
             About = new AboutViewModel(this);
-            CreateAccount = new CreateAccountViewModel(this);
+            CreateAccount = new CreateAccountViewModel(this, _database, _dialogService);
             CreateAccount.Affiliations = this.Affiliations;
             Registration = new RegistrationViewModel(this);
             CreateAffiliation = new CreateAffiliationViewModel(this);
