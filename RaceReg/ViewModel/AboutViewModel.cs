@@ -10,6 +10,8 @@ namespace RaceReg.ViewModel
 {
     public class AboutViewModel : ChildView
     {
+
+
         public AboutViewModel(MainWindowViewModel mainWindowViewModel) : base(mainWindowViewModel)
         {
 

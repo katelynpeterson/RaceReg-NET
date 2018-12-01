@@ -281,9 +281,65 @@ namespace RaceReg.Model
             }
         }
 
-        public Task<User> AddNewUserAsync(User user)
+        public async Task<User> AddNewUserAsync(User user)
         {
-            throw new NotImplementedException();
+            var affiliations = new ObservableCollection<Affiliation>(await RefreshAffiliations());
+            string saveAffiliationStatement = "INSERT INTO " + Constants.USER + " ("
+                                                                        + "firstname, "
+                                                                        + "lastname, "
+                                                                        + "affiliationid, "
+                                                                        + "email, "
+                                                                        + "username, "
+                                                                        + "active"
+                                                                        + ") VALUES ("
+                                                                        + "@firstname, "
+                                                                        + "@lastname, "
+                                                                        + "@affiliationid, "
+                                                                        + "@email, "
+                                                                        + "@username, "
+                                                                        + "@active"
+                                                                        + ");"
+                                                                        + " SELECT last_insert_id();";
+            using (var connection1 = new MySqlConnection(Constants.CONNECTION_STRING))
+            {
+                await connection1.OpenAsync();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = connection1;
+                    cmd.CommandText = saveAffiliationStatement;
+                    cmd.Prepare();
+
+                    cmd.Parameters.AddWithValue("@firstname", user.FirstName);
+                    cmd.Parameters.AddWithValue("@lastname", user.LastName);
+                    cmd.Parameters.AddWithValue("@affiliationid", user.Affiliation.Id);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
+                    cmd.Parameters.AddWithValue("@username", user.Username);
+                    cmd.Parameters.AddWithValue("@active", 1);
+
+                    await cmd.ExecuteNonQueryAsync();
+
+#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                    if (cmd.LastInsertedId != null)
+#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                    {
+                        cmd.Parameters.Add(new MySqlParameter("newId", cmd.LastInsertedId));
+                    }
+
+                    var userId = Convert.ToInt32(cmd.Parameters["@newId"].Value);
+                    user.Id = userId;
+                }
+
+#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                if (user.Id == 0 || user.Id == null)
+#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                {
+                    return null;
+                }
+                else
+                {
+                    return user;
+                }
+            }
         }
     }
 }

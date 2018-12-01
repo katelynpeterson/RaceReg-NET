@@ -17,14 +17,14 @@ namespace RaceReg.ViewModel
         private LoginViewModel login;
         private AboutViewModel about;
         private CreateAccountViewModel createAccount;
-        private object _childViewModel;
-        private object _previousChildViewModel;
+        private ChildView _childViewModel;
+        private ChildView _previousChildViewModel;
         private RegistrationViewModel _registration;
         private CreateAffiliationViewModel _createAffiliation;
         private User currentUser;
 
-        public object PreviousChildViewModel { get => _previousChildViewModel; set => Set(ref _previousChildViewModel, value); }
-        public object ChildViewModel { get => _childViewModel; set => Set(ref _childViewModel, value); }
+        public ChildView PreviousChildViewModel { get => _previousChildViewModel; set => Set(ref _previousChildViewModel, value); }
+        public ChildView ChildViewModel { get => _childViewModel; set => Set(ref _childViewModel, value); }
         public LoginViewModel Login { get => login; set => Set(ref login, value); }
         public AboutViewModel About { get => about; set => Set(ref about, value); }
         public CreateAccountViewModel CreateAccount { get => createAccount; set => Set(ref createAccount, value); }
@@ -46,6 +46,7 @@ namespace RaceReg.ViewModel
             Login = new LoginViewModel(this);
             About = new AboutViewModel(this);
             CreateAccount = new CreateAccountViewModel(this);
+            CreateAccount.Affiliations = this.Affiliations;
             Registration = new RegistrationViewModel(this);
             CreateAffiliation = new CreateAffiliationViewModel(this);
 
@@ -63,6 +64,7 @@ namespace RaceReg.ViewModel
             Login = new LoginViewModel(this, _database, _dialogService);
             About = new AboutViewModel(this);
             CreateAccount = new CreateAccountViewModel(this);
+            CreateAccount.Affiliations = this.Affiliations;
             Registration = new RegistrationViewModel(this);
             CreateAffiliation = new CreateAffiliationViewModel(this);
 
@@ -79,7 +81,6 @@ namespace RaceReg.ViewModel
             {
                 Affiliations.Add(affiliation);
             }
-            Affiliations = new ObservableCollection<Affiliation>(getAffiliations);
 
             var getParticipants = await _database.RefreshParticipants().ConfigureAwait(true);
             Participants.Clear();
@@ -95,12 +96,12 @@ namespace RaceReg.ViewModel
             QueryDatabase();
 
             PreviousChildViewModel = ChildViewModel;
-            ChildViewModel = viewModel;
+            ChildViewModel = (ChildView) viewModel;
         }
 
         public void SwitchToPreviousView()
         {
-            object temp = ChildViewModel;
+            ChildView temp = ChildViewModel;
             ChildViewModel = PreviousChildViewModel;
             PreviousChildViewModel = temp;
         }

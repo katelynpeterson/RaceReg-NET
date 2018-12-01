@@ -15,6 +15,21 @@ namespace RaceReg.ViewModel
         private IRaceRegDB _database;
         private IDialogService _dialogService;
 
+        private MainWindowViewModel mainWindow;
+
+        public ObservableCollection<Affiliation> affiliations;
+        public ObservableCollection<Affiliation> Affiliations
+        {
+            get
+            {
+                return affiliations;
+            }
+            set
+            {
+                Set(ref affiliations, value);
+            }
+        }
+
         private User user;
         public User User
         {
@@ -39,9 +54,11 @@ namespace RaceReg.ViewModel
 
         private RelayCommand createNewAccount;
         public RelayCommand CreateNewAccount => createNewAccount ?? (createNewAccount = new RelayCommand(
-            () =>
+            async () =>
             {
-                throw new NotImplementedException();
+                user = await _database.AddNewUserAsync(User);
+                mainWindow.CurrentUser = user;
+                mainWindow.SwitchToRegistrationView();
             }
             ));
 
@@ -61,24 +78,11 @@ namespace RaceReg.ViewModel
             }
             ));
 
-        public async void RefreshAffiliationsAsync()
-        {
-            var getAffiliations = await _database.RefreshAffiliations().ConfigureAwait(true);
-            mainWindow.Affiliations.Clear();
-
-            foreach (Affiliation affiliation in getAffiliations)
-            {
-                mainWindow.Affiliations.Add(affiliation);
-            }
-        }
-
         private RelayCommand refreshAffiliations;
-        private readonly MainWindowViewModel mainWindowViewModel;
-
         public RelayCommand RefreshAffiliations => refreshAffiliations ?? (refreshAffiliations = new RelayCommand(
             () =>
             {
-                RefreshAffiliationsAsync();
+                mainWindow.QueryDatabase();
             }
             ));
 
@@ -88,8 +92,9 @@ namespace RaceReg.ViewModel
 
             _database = db;
             _dialogService = dialogService;
+            mainWindow = mainWindowViewModel;
 
-            RefreshAffiliationsAsync();
+            mainWindow.QueryDatabase();
         }
 
         //Default constructor

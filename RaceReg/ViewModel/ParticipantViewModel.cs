@@ -13,6 +13,7 @@ namespace RaceReg.ViewModel
     public class ParticipantViewModel : ViewModelBase
     {
         private IRaceRegDB _database;
+        private MainWindowViewModel mainWindow;
 
         private Participant participant;
         public Participant Participant
@@ -71,11 +72,14 @@ namespace RaceReg.ViewModel
             }
             ));
 
-        public ParticipantViewModel(IRaceRegDB db)
+        public ParticipantViewModel(MainWindowViewModel mainWindowViewModel, IRaceRegDB db)
         {
             _database = db;
+            mainWindow = mainWindowViewModel;
 
             Participant = new Participant();
+
+            mainWindow.QueryDatabase();
         }
     }
 }

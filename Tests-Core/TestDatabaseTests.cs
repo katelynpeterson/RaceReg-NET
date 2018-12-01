@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using RaceReg.Model;
+using RaceReg.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,12 +40,33 @@ namespace Tests_Core
             Assert.AreEqual(participants.Count, numParticipants);
         }
 
-        /** Will implement later!!! **/
-        //[Test]
-        //public async Task GrabUserDetailsAsyncTest()
-        //{
+        [TestCase("jacksonporter", "Jackson", "Porter", "jackson.porter@racereg.run", "MHS")]
+        public async Task GrabUserDetailsAsyncTest(string username, string firstName, string lastName, string email, string affiliationAbbreviation)
+        {
+            TestDatabase testDatabase = new TestDatabase();
+            TestDialogService testDialogService = new TestDialogService();
 
-        //}
+            User user = new User();
+            user.Username = username;
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.Email = email;
+
+            /** Make an affiliation with matching abbreviation and store in DB **/
+            Affiliation matchingAffiliation = new Affiliation();
+            matchingAffiliation.Abbreviation = affiliationAbbreviation;
+            await testDatabase.AddNewAffiliationAsync(matchingAffiliation);
+
+            user.Affiliation = matchingAffiliation;
+
+            user = await testDatabase.AddNewUserAsync(user);
+
+            Assert.AreEqual(user.Username, username);
+            Assert.AreEqual(user.FirstName, firstName);
+            Assert.AreEqual(user.LastName, lastName);
+            Assert.AreEqual(user.Email, email);
+            Assert.AreEqual(user.Affiliation.Abbreviation, affiliationAbbreviation);
+        }
 
         [TestCase("Jackson", "Porter", "m", "MHS", "1997-01-01")]
         public async Task SaveNewParticipantTest(string firstName, string lastName, string gender, string affiliationAbbreviation, string birthDate)

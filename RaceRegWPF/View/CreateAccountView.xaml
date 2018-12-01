@@ -53,7 +53,7 @@
                            FontSize="16"
                            Margin="10"
                            Width="200"/>
-                        <TextBox Text="{Binding Username}"
+                        <TextBox Text="{Binding User.Username}"
                          FontSize="16"
                          Margin="10"
                          Width="200"/>
@@ -88,7 +88,7 @@
                            FontSize="16"
                            Margin="10"
                            Width="200"/>
-                        <TextBox Text="{Binding FirstName}"
+                        <TextBox Text="{Binding User.FirstName}"
                          FontSize="16"
                          Margin="10"
                          Width="200"/>
@@ -99,7 +99,7 @@
                            FontSize="16"
                            Margin="10"
                            Width="200"/>
-                        <TextBox Text="{Binding LastName}"
+                        <TextBox Text="{Binding User.LastName}"
                          FontSize="16"
                          Margin="10"
                          Width="200"/>
@@ -110,7 +110,7 @@
                            FontSize="16"
                            Margin="10"
                            Width="200"/>
-                        <TextBox Text="{Binding Email}"
+                        <TextBox Text="{Binding User.Email}"
                          FontSize="16"
                          Margin="10"
                          Width="200"/>
@@ -125,7 +125,7 @@
                                   Grid.Row="2"
                                   Width="175"
                                   Margin="10"
-                                  ItemsSource="{Binding mainWindow.Affiliations}" 
+                                  ItemsSource="{Binding Affiliations}" 
                                   DisplayMemberPath="Name"
                                   SelectedItem="{Binding User.Affiliation}" >
                         </ComboBox>

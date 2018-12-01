@@ -9,7 +9,7 @@ namespace RaceReg.ViewModel
 {
     public class ChildView : ViewModelBase
     {
-        protected readonly MainWindowViewModel mainWindow;
+        protected MainWindowViewModel mainWindow;
 
         public ChildView(MainWindowViewModel mainWindowViewModel)
         {
