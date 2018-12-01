@@ -4,7 +4,7 @@ using RaceReg.ViewModel;
 using System;
 using Tests_Core;
 
-namespace Tests
+namespace Tests_Core
 {
 
     [TestFixture]
