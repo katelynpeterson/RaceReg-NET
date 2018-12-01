@@ -14,14 +14,17 @@ namespace Tests_Core
     {
         List<Affiliation> affiliations;
         List<Participant> participants;
-        int currentAffiliationId;
-        int currentParticipantId;
+        List<User> users;
+        int currentAffiliationId, currentParticipantId, currentUserId;
 
         public TestDatabase()
         {
             affiliations = new List<Affiliation>();
+            participants = new List<Participant>(); 
+            users = new List<User>();
             currentAffiliationId = 1;
             currentParticipantId = 1;
+            currentUserId = 1;
         }
 
         public async Task<Affiliation> AddNewAffiliationAsync(Affiliation affiliation)
@@ -33,9 +36,26 @@ namespace Tests_Core
             return await Task.FromResult(affiliations[affiliations.Count() - 1]);
         }
 
-        public Task<User> GrabUserDetailsAsync(string username, SecureString password)
+        public async Task<User> GrabUserDetailsAsync(string username, SecureString password)
         {
-            throw new NotImplementedException();
+            User user = null;
+            int index = -1;
+
+            for (int i = 0; i < participants.Count(); i++)
+            {
+                if (users[i].Username.Equals(username))
+                {
+                    index = i;
+                    break; //don't know if this break will work correctly, the for loop might continue. In that case, last matching user in database will be chosen.
+                }
+            }
+
+            if (index > 0)
+            {
+                user = users[index];
+            }
+
+            return await Task.FromResult(user);
         }
 
         public async Task<IEnumerable<Affiliation>> RefreshAffiliations()
@@ -58,22 +78,49 @@ namespace Tests_Core
             return await Task.FromResult(affiliations);
         }
 
-        public Task<IEnumerable<Participant>> RefreshParticipants()
+        public async Task<IEnumerable<Participant>> RefreshParticipants()
         {
-            throw new NotImplementedException();
+            if (participants.Count == 0)
+            {
+                Random rand = new Random();
+
+                for (int i = 0; i < rand.Next(1, 101); i++)
+                {
+                    Participant temp = new Participant();
+
+                    temp.Id = currentParticipantId;
+                    currentParticipantId++;
+
+                    temp.FirstName = "Participant " + temp.Id;
+                    temp.LastName = "LastName";
+
+                    int random = rand.Next(participants.Count());
+                    temp.Affiliation = affiliations[random];
+
+                    random = rand.Next(2);
+                    if(random == 0)
+                    {
+                        temp.Gender = Participant.GenderType.Male;
+                    }
+                    else if(random == 1)
+                    {
+                        temp.Gender = Participant.GenderType.Female;
+                    }
+                    else
+                    {
+                        temp.Gender = Participant.GenderType.Other;
+                    }
+
+                    temp.BirthDate = DateTime.Now.AddDays(rand.Next(1, 365));
+
+                    participants.Add(temp);
+                }
+            }
+
+            return await Task.FromResult(participants);
         }
 
-        public Task<string> Save(Participant updatedParticipant)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Participant> SaveParticipant(Participant updatedParticipant)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Participant> SaveParticipantAsync(Participant updatedParticipant)
+        public async Task<Participant> SaveParticipant(Participant updatedParticipant)
         {
             int index = -1;
             for(int i = 0;  i < participants.Count(); i++)
