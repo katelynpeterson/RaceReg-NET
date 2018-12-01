@@ -40,11 +40,13 @@ namespace Tests_Core
             {
                 /** Randomly populate database **/
                 Random rand = new Random();
-                populateDatabase(rand.Next(1, 26), rand.Next(1, 101));
+                int numAffilations = rand.Next(1, 26);
+                int numParticipants = rand.Next(1, 101);
+                populateDatabase(numAffilations, numParticipants, numAffilations);
             }
         }
 
-        public TestDatabase(int numAffilations, int numParticipants)
+        public TestDatabase(int numAffilations, int numParticipants, int numUsers)
         {
             affiliations = new List<Affiliation>();
             participants = new List<Participant>(); 
@@ -53,11 +55,16 @@ namespace Tests_Core
             currentParticipantId = 1;
             currentUserId = 1;
 
-            populateDatabase(numAffilations, numParticipants);
+            populateDatabase(numAffilations, numParticipants, numUsers);
         }
 
-        private void populateDatabase(int numAffilations, int numParticipants)
+        private void populateDatabase(int numAffilations, int numParticipants, int numUsers)
         {
+            if(numAffilations < 1)
+            {
+                throw new Exception("Affiliation count is lower than 1. Affiliation count MUST be greater than 1.");
+            }
+
             Random rand = new Random();
 
             /** Populate the affiliations table **/
@@ -102,6 +109,20 @@ namespace Tests_Core
                 temp.BirthDate = DateTime.Now.AddDays(rand.Next(1, 365));
 
                 participants.Add(temp);
+            }
+
+            /** Populate the users table **/
+            for (int i = 0; i < numUsers; i++)
+            {
+                User temp = new User();
+                temp.Id = currentUserId;
+                currentUserId++;
+                temp.FirstName = "User " + temp.Id;
+                temp.LastName = "LastName";
+                temp.Email = temp.FirstName + "." + temp.LastName + "@email.com";
+                temp.Affiliation = affiliations[i];
+
+                users.Add(temp);
             }
         }
 

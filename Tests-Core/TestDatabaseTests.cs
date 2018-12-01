@@ -11,6 +11,30 @@ namespace Tests_Core
     [TestFixture]
     class TestDatabaseTests
     {
+        [TestCase(5)]
+        public async Task RefreshAffiliationsTest(int numAffiliations)
+        {
+            /** Make a new database **/
+            var testDB = new TestDatabase(numAffiliations, 0, 0);
+
+            var affiliationsList = await testDB.RefreshAffiliations();
+            ObservableCollection<Affiliation> affiliations = new ObservableCollection<Affiliation>(affiliationsList);
+
+            Assert.AreEqual(affiliations.Count, numAffiliations);
+        }
+
+        [Test]
+        public async Task RefreshParticipantsTest()
+        {
+
+        }
+
+        [Test]
+        public async Task GrabUserDetailsAsyncTest()
+        {
+
+        }
+
         [TestCase("Jackson", "Porter", "m", "MHS", "1997-01-01")]
         public async Task SaveNewParticipantTest(string firstName, string lastName, string gender, string affiliationAbbreviation, string birthDate)
         {
