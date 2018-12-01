@@ -51,7 +51,7 @@ namespace RaceReg.ViewModel
 
         public async Task SaveNewParticipantToDatabaseAsync()
         {
-            var result = await _database.SaveParticipant(Participant);
+            var result = await _database.SaveNewParticipant(Participant);
 
             if(result == null)
             {

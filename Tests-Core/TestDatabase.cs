@@ -20,11 +20,89 @@ namespace Tests_Core
         public TestDatabase()
         {
             affiliations = new List<Affiliation>();
+            participants = new List<Participant>();
+            users = new List<User>();
+            currentAffiliationId = 1;
+            currentParticipantId = 1;
+            currentUserId = 1;
+        }
+
+        public TestDatabase(bool random)
+        {
+            affiliations = new List<Affiliation>();
+            participants = new List<Participant>();
+            users = new List<User>();
+            currentAffiliationId = 1;
+            currentParticipantId = 1;
+            currentUserId = 1;
+
+            if (random)
+            {
+                /** Randomly populate database **/
+                Random rand = new Random();
+                populateDatabase(rand.Next(1, 26), rand.Next(1, 101));
+            }
+        }
+
+        public TestDatabase(int numAffilations, int numParticipants)
+        {
+            affiliations = new List<Affiliation>();
             participants = new List<Participant>(); 
             users = new List<User>();
             currentAffiliationId = 1;
             currentParticipantId = 1;
             currentUserId = 1;
+
+            populateDatabase(numAffilations, numParticipants);
+        }
+
+        private void populateDatabase(int numAffilations, int numParticipants)
+        {
+            Random rand = new Random();
+
+            /** Populate the affiliations table **/
+            for (int i = 0; i < numAffilations; i++)
+            {
+                Affiliation temp = new Affiliation();
+                temp.Id = currentAffiliationId;
+                currentAffiliationId++;
+                temp.Name = "Affiliation " + temp.Id;
+                temp.Abbreviation = "A" + temp.Id;
+                affiliations.Add(temp);
+            }
+
+            /** Populate the participants table **/
+            for (int i = 0; i < numParticipants; i++)
+            {
+                Participant temp = new Participant();
+
+                temp.Id = currentParticipantId;
+                currentParticipantId++;
+
+                temp.FirstName = "Participant " + temp.Id;
+                temp.LastName = "LastName";
+
+                int random = rand.Next(affiliations.Count());
+                temp.Affiliation = affiliations[random];
+
+                random = rand.Next(2);
+                if (random == 0)
+                {
+                    temp.Gender = Participant.GenderType.Male;
+                }
+                else if (random == 1)
+                {
+                    temp.Gender = Participant.GenderType.Female;
+                }
+                else
+                {
+                    temp.Gender = Participant.GenderType.Other;
+                }
+
+                temp.BirthDate = DateTime.Now.AddDays(rand.Next(1, 365));
+
+                participants.Add(temp);
+            }
         }
 
         public async Task<Affiliation> AddNewAffiliationAsync(Affiliation affiliation)
@@ -60,88 +138,45 @@ namespace Tests_Core
 
         public async Task<IEnumerable<Affiliation>> RefreshAffiliations()
         {
-            if(affiliations.Count == 0)
-            {
-                Random rand = new Random();
-
-                for (int i = 0; i < rand.Next(1, 51); i++)
-                {
-                    Affiliation temp = new Affiliation();
-                    temp.Id = currentAffiliationId;
-                    currentAffiliationId++;
-                    temp.Name = "Affiliation " + temp.Id;
-                    temp.Abbreviation = "A" + temp.Id;
-                    affiliations.Add(temp);
-                }
-            }
-
             return await Task.FromResult(affiliations);
         }
 
         public async Task<IEnumerable<Participant>> RefreshParticipants()
         {
-            if (participants.Count == 0)
-            {
-                Random rand = new Random();
-
-                for (int i = 0; i < rand.Next(1, 101); i++)
-                {
-                    Participant temp = new Participant();
-
-                    temp.Id = currentParticipantId;
-                    currentParticipantId++;
-
-                    temp.FirstName = "Participant " + temp.Id;
-                    temp.LastName = "LastName";
-
-                    int random = rand.Next(participants.Count());
-                    temp.Affiliation = affiliations[random];
-
-                    random = rand.Next(2);
-                    if(random == 0)
-                    {
-                        temp.Gender = Participant.GenderType.Male;
-                    }
-                    else if(random == 1)
-                    {
-                        temp.Gender = Participant.GenderType.Female;
-                    }
-                    else
-                    {
-                        temp.Gender = Participant.GenderType.Other;
-                    }
-
-                    temp.BirthDate = DateTime.Now.AddDays(rand.Next(1, 365));
-
-                    participants.Add(temp);
-                }
-            }
-
             return await Task.FromResult(participants);
         }
 
-        public async Task<Participant> SaveParticipant(Participant updatedParticipant)
+        public async Task<Participant> SaveNewParticipant(Participant participant)
         {
-            int index = -1;
-            for(int i = 0;  i < participants.Count(); i++)
-            {
-                if (participants[i].Id == updatedParticipant.Id)
-                {
-                    participants[i] = updatedParticipant;
-                    index = i;
-                    break;
-                }
-            }
+            participant.Id = currentParticipantId;
+            currentParticipantId++;
+            participants.Add(participant);
 
-            if(index < 0)
-            {
-                Participant toReturn = null;
-                return await Task.FromResult(toReturn);
-            }
-            else
-            {
-                return await Task.FromResult(participants[index]);
-            }
+            return await Task.FromResult(participants[participants.Count() - 1]);
         }
+
+        //public async Task<Participant> SaveNewParticipant(Participant updatedParticipant)
+        //{
+        //    int index = -1;
+        //    for(int i = 0;  i < participants.Count(); i++)
+        //    {
+        //        if (participants[i].Id == updatedParticipant.Id)
+        //        {
+        //            participants[i] = updatedParticipant;
+        //            index = i;
+        //            break;
+        //        }
+        //    }
+
+        //    if(index < 0)
+        //    {
+        //        Participant toReturn = null;
+        //        return await Task.FromResult(toReturn);
+        //    }
+        //    else
+        //    {
+        //        return await Task.FromResult(participants[index]);
+        //    }
+        //}
     }
 }

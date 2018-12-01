@@ -84,7 +84,7 @@ namespace RaceReg.Model
             return affiliations;
         }
 
-        public async Task<Participant> SaveParticipant(Participant updatedParticipant)
+        public async Task<Participant> SaveNewParticipant(Participant updatedParticipant)
         {
             string saveParticipantStatement = "INSERT INTO " + Constants.PARTICIPANT + " ("
                                                                         + "firstname, "

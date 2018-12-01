@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceReg", "RaceReg\RaceReg.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceRegWPF", "RaceRegWPF\RaceRegWPF.csproj", "{111EEA9A-4259-4E34-9C71-D7C6DC899EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests-Core", "Tests-Core\Tests-Core.csproj", "{A1996F1D-3273-41DE-B93E-E9490037C79A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests_Core", "Tests-Core\Tests_Core.csproj", "{A1996F1D-3273-41DE-B93E-E9490037C79A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

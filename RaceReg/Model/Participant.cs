@@ -177,13 +177,6 @@ namespace RaceReg.Model
             }
         }
 
-        public string ToString()
-        {
-            return this.FirstName;
-                //+ " " + this.LastName + ": " + this.BirthDate + ", " + this.Affiliation.Name + ", " + this.Gender;
-        }
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public virtual void RaisePropertyChanged(string propertyName)
@@ -194,5 +187,31 @@ namespace RaceReg.Model
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as Participant;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            bool areEqual = true;
+
+            if(this.Id != item.Id || 
+                !this.FirstName.Equals(item.FirstName) ||
+                !this.LastName.Equals(item.LastName) || 
+                this.Gender != item.Gender ||
+                !this.Affiliation.Equals(item.Affiliation) ||
+                this.BirthDate.CompareTo(item.BirthDate) != 0)
+            {
+                areEqual = false;
+            }
+
+            return areEqual;
+        }
+
     }
 }

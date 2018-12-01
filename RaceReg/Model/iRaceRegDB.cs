@@ -11,7 +11,7 @@ namespace RaceReg.Model
         Task<User> GrabUserDetailsAsync(string username, System.Security.SecureString password);
         Task<IEnumerable<Affiliation>> RefreshAffiliations();
         Task<IEnumerable<Participant>> RefreshParticipants();
-        Task<Participant> SaveParticipant(Participant updatedParticipant);
+        Task<Participant> SaveNewParticipant(Participant updatedParticipant);
         Task<Affiliation> AddNewAffiliationAsync(Affiliation affiliation);
     }
 }

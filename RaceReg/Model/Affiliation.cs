@@ -16,6 +16,25 @@ namespace RaceReg.Model
         public string Name { get; set; }
         public string Abbreviation { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            var item = obj as Affiliation;
 
+            if (item == null)
+            {
+                return false;
+            }
+
+            bool areEqual = true;
+
+            if (this.Id != item.Id ||
+                !this.Name.Equals(item.Name) ||
+                !this.Abbreviation.Equals(item.Abbreviation))
+            {
+                areEqual = false;
+            }
+
+            return areEqual;
+        }
     }
 }
