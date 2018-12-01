@@ -52,6 +52,23 @@ namespace RaceReg.ViewModel
             ChildViewModel = Login;
         }
 
+        public MainWindowViewModel(IRaceRegDB database, IDialogService dialogService)
+        {
+            _database = database;
+            _dialogService = dialogService;
+
+            Affiliations = new ObservableCollection<Affiliation>();
+            Participants = new ObservableCollection<Participant>();
+
+            Login = new LoginViewModel(this, _database, _dialogService);
+            About = new AboutViewModel(this);
+            CreateAccount = new CreateAccountViewModel(this);
+            Registration = new RegistrationViewModel(this);
+            CreateAffiliation = new CreateAffiliationViewModel(this);
+
+            ChildViewModel = Login;
+        }
+
         /** COMMON SHARED METHODS **/
         public async void QueryDatabase()
         {
@@ -109,7 +126,7 @@ namespace RaceReg.ViewModel
             SwitchView(Registration);
         }
 
-        internal void SwitchToCreateAffiliationView()
+        public void SwitchToCreateAffiliationView()
         {
             SwitchView(CreateAffiliation);
         }

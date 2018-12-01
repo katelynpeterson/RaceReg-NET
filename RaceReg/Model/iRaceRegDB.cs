@@ -8,6 +8,7 @@ namespace RaceReg.Model
 {
     public interface IRaceRegDB
     {
+        Task<User> AddNewUserAsync(User user);
         Task<User> GrabUserDetailsAsync(string username, System.Security.SecureString password);
         Task<IEnumerable<Affiliation>> RefreshAffiliations();
         Task<IEnumerable<Participant>> RefreshParticipants();

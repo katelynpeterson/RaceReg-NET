@@ -13,7 +13,7 @@ namespace RaceReg.Model
     {
         public async Task<IEnumerable<Participant>> RefreshParticipants()
         {
-            var affiliations = new ObservableCollection<Affiliation>( await RefreshAffiliations());
+            var affiliations = new ObservableCollection<Affiliation>(await RefreshAffiliations());
 
             List<Participant> participants = new List<Participant>();
             string getParticipantsQuery = "SELECT * FROM " + Constants.PARTICIPANT + " WHERE active = 1;";
@@ -279,6 +279,11 @@ namespace RaceReg.Model
                     return affiliation;
                 }
             }
+        }
+
+        public Task<User> AddNewUserAsync(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

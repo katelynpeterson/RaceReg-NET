@@ -140,7 +140,7 @@ namespace Tests_Core
             User user = null;
             int index = -1;
 
-            for (int i = 0; i < participants.Count(); i++)
+            for (int i = 0; i < users.Count(); i++)
             {
                 if (users[i].Username.Equals(username))
                 {
@@ -149,7 +149,7 @@ namespace Tests_Core
                 }
             }
 
-            if (index > 0)
+            if (index >= 0)
             {
                 user = users[index];
             }
@@ -174,6 +174,15 @@ namespace Tests_Core
             participants.Add(participant);
 
             return await Task.FromResult(participants[participants.Count() - 1]);
+        }
+
+        public async Task<User> AddNewUserAsync(User user)
+        {
+            user.Id = currentUserId;
+            currentUserId++;
+            users.Add(user);
+
+            return await Task.FromResult(users[users.Count() - 1]);
         }
 
         //public async Task<Participant> SaveNewParticipant(Participant updatedParticipant)
