@@ -55,5 +55,32 @@ namespace Tests_Core
             /** Test Equality **/
             Assert.AreEqual(participants[0], newParticipant);
         }
+
+        [TestCase("Murray High School", "MHS")]
+        public async Task AddNewAffiliationTest(string name, string abbreviation)
+        {
+            /** Make a new database **/
+            var testDB = new TestDatabase();
+
+            /** Make the affiliation **/
+            Affiliation newAffiliation = new Affiliation();
+
+            newAffiliation.Name = name;
+            newAffiliation.Abbreviation = abbreviation;
+
+            /** Store affiliation in database **/
+            Affiliation returnedAffiliation = await testDB.AddNewAffiliationAsync(newAffiliation);
+            newAffiliation.Id = returnedAffiliation.Id;
+
+            /** Forces a failed test **/
+            //Affiliation returnedAffiliation1 = await testDB.AddNewAffiliationAsync(new Affiliation());
+
+            /** Verify affiliation excists **/
+            var listAffiliations = await testDB.RefreshAffiliations();
+            ObservableCollection<Affiliation> affiliations = new ObservableCollection<Affiliation>(listAffiliations);
+
+            /** Test Equality **/
+            Assert.AreEqual(affiliations[0], newAffiliation);
+        }
     }
 }
