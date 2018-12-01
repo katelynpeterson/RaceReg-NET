@@ -23,17 +23,28 @@ namespace Tests_Core
             Assert.AreEqual(affiliations.Count, numAffiliations);
         }
 
-        [Test]
-        public async Task RefreshParticipantsTest()
+        [TestCase(1, 5)]
+        public async Task RefreshParticipantsTest(int numAffiliations, int numParticipants)
         {
+            /** Make a new database **/
+            var testDB = new TestDatabase(numAffiliations, numParticipants, 0);
 
+            var affiliationsList = await testDB.RefreshAffiliations();
+            ObservableCollection<Affiliation> affiliations = new ObservableCollection<Affiliation>(affiliationsList);
+
+            var participantsList = await testDB.RefreshParticipants();
+            ObservableCollection<Participant> participants = new ObservableCollection<Participant>(participantsList);
+
+            Assert.AreEqual(affiliations.Count, numAffiliations);
+            Assert.AreEqual(participants.Count, numParticipants);
         }
 
-        [Test]
-        public async Task GrabUserDetailsAsyncTest()
-        {
+        /** Will implement later!!! **/
+        //[Test]
+        //public async Task GrabUserDetailsAsyncTest()
+        //{
 
-        }
+        //}
 
         [TestCase("Jackson", "Porter", "m", "MHS", "1997-01-01")]
         public async Task SaveNewParticipantTest(string firstName, string lastName, string gender, string affiliationAbbreviation, string birthDate)
