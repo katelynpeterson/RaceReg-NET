@@ -15,6 +15,8 @@ namespace RaceReg.ViewModel
         private IRaceRegDB _database;
         private IDialogService _dialogService;
 
+        private readonly MainWindowViewModel mainWindowViewModel;
+
         private string _affiliationMessage;
         public String AffiliationMessage
         {
@@ -82,25 +84,13 @@ namespace RaceReg.ViewModel
             }
             ));
 
-        public async void RefreshAffiliationsAsync()
-        {
-            var getAffiliations = await _database.RefreshAffiliations().ConfigureAwait(true);
-            Affiliations.Clear();
-
-            foreach (Affiliation affiliation in getAffiliations)
-            {
-                Affiliations.Add(affiliation);
-            }
-            Affiliations = new ObservableCollection<Affiliation>(getAffiliations);
-        }
 
         private RelayCommand refreshAffiliations;
-        private readonly MainWindowViewModel mainWindowViewModel;
 
         public RelayCommand RefreshAffiliations => refreshAffiliations ?? (refreshAffiliations = new RelayCommand(
             () =>
             {
-                RefreshAffiliationsAsync();
+                mainWindow.QueryDatabase();
             }
             ));
 
