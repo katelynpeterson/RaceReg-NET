@@ -30,5 +30,24 @@ namespace Tests_Core
 
             Assert.AreEqual(mainWindowViewModel.Registration, cvm);
         }
+
+        [Test]
+        public async Task CheckLoginTest()
+        {
+            TestDatabase testDatabase = new TestDatabase();
+            TestDialogService testDialogService = new TestDialogService();
+
+            User user = new User();
+            user.Username = "username";
+            await testDatabase.AddNewUserAsync(user);
+
+            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel(testDatabase, testDialogService);
+            mainWindowViewModel.Login.Username = "username";
+
+            mainWindowViewModel.Login.LoginCommand.Execute(null);
+
+            user = mainWindowViewModel.CurrentUser;
+            Assert.AreEqual(user.Username, "username");
+        }
     }
 }
