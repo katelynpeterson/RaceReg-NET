@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using RaceReg.Model;
 using RaceReg.ViewModel;
 using System;
@@ -12,6 +13,21 @@ namespace Tests_Core
     [TestFixture]
     class TestDatabaseTests
     {
+        public IRaceRegDB CreateDatabase()
+        {
+            Mock<IRaceRegDB> testMockDatabase = new Mock<IRaceRegDB>();
+
+            var affiliations = new List<Affiliation>();
+            var participants = new List<Participant>();
+            var users = new List<User>();
+
+            testMockDatabase.Setup(m => m.AddNewAffiliationAsync(It.IsAny<Affiliation>())).Callback<Affiliation>(c => affiliations.Add(c));
+            //testMockDatabase.Setup(m => m.RefreshAffiliations()).ReturnsAsync(Task<IEnumerable<Affiliation>>);
+
+            return testMockDatabase.Object;
+        }
+
+
         [TestCase(5)]
         public async Task RefreshAffiliationsTest(int numAffiliations)
         {
@@ -138,6 +154,33 @@ namespace Tests_Core
 
             /** Test Equality **/
             Assert.AreEqual(affiliations[0], newAffiliation);
+        }
+
+        [TestCase("Murray High School", "MHS")]
+        public async Task AddNewAffiliationTestMockAsync(string name, string abbreviation)
+        {
+            var testDB = CreateDatabase();
+
+            /** Make the affiliation **/
+            Affiliation newAffiliation = new Affiliation();
+
+            newAffiliation.Name = name;
+            newAffiliation.Abbreviation = abbreviation;
+
+            /** Store affiliation in database **/
+            Affiliation returnedAffiliation = await testDB.AddNewAffiliationAsync(newAffiliation);
+            newAffiliation.Id = returnedAffiliation.Id;
+
+            /** Forces a failed test **/
+            //Affiliation returnedAffiliation1 = await testDB.AddNewAffiliationAsync(new Affiliation());
+
+            /** Verify affiliation excists **/
+            var listAffiliations = testDB.RefreshAffiliations();
+            ObservableCollection<Affiliation> affiliations = new ObservableCollection<Affiliation>(listAffiliations);
+
+            /** Test Equality **/
+            Assert.AreEqual(affiliations[0], newAffiliation);
+            
         }
     }
 }
