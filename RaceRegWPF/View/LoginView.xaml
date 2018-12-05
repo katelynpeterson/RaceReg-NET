@@ -52,10 +52,17 @@
                            FontSize="24"
                            Margin="10"
                            Width="125"/>
-                        <TextBox Text="{Binding Username}"
+                        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="24"
                          Margin="10"
-                         Width="200"/>
+                         Width="200">
+                            <TextBox.InputBindings>
+                                <KeyBinding Command="{Binding LoginCommand, UpdateSourceTrigger=PropertyChanged}"
+                                            CommandParameter="{Binding ElementName=This}"
+                                            Key="Enter"
+                                            />
+                            </TextBox.InputBindings>
+                        </TextBox>
                     </StackPanel>
                     <!--
                     <StackPanel Orientation="Horizontal"
