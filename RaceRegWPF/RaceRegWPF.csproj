@@ -104,8 +104,8 @@
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ParticipantView.xaml.cs">
-      <DependentUpon>ParticipantView.xaml</DependentUpon>
+    <Compile Include="View\AddParticipantView.xaml.cs">
+      <DependentUpon>AddParticipantView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegistrationView.xaml.cs">
       <DependentUpon>RegistrationView.xaml</DependentUpon>
@@ -143,7 +143,7 @@
     <Page Include="View\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ParticipantView.xaml">
+    <Page Include="View\AddParticipantView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegistrationView.xaml">

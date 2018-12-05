@@ -41,6 +41,20 @@ namespace RaceReg.ViewModel
             }
         }
 
+        private Affiliation affiliation;
+        public Affiliation Affiliation
+        {
+            get
+            {
+                return affiliation;
+            }
+            set
+            {
+                Set(ref affiliation, value);
+            }
+        }
+
+
         public enum GenderType { Male, Female, Other };
         public IEnumerable<GenderType> GenderTypes
         {
@@ -86,6 +100,7 @@ namespace RaceReg.ViewModel
             Participant = new Participant();
 
             this.Affiliations = mainWindow.Affiliations;
+            this.Affiliation = mainWindow.CurrentUser.Affiliation;
 
             mainWindow.QueryDatabase();
         }

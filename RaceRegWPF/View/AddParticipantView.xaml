@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RaceRegWPF.View.ParticipantView"
+﻿<UserControl x:Class="RaceRegWPF.View.AddParticipantView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,7 +12,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <Grid HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="200"/>
@@ -46,13 +46,19 @@
                Grid.Row="2"
                Style="{StaticResource EntryFieldLabelNormal}"
                Text="Affiliation:" />
+        <!--
         <ComboBox Style="{StaticResource EntryComboBoxNormal}"
                   Grid.Column="1"
                   Grid.Row="2" 
                   ItemsSource="{Binding Affiliations}" 
                   DisplayMemberPath="Name"
                   SelectedItem="{Binding Participant.Affiliation}" >
-        </ComboBox>
+        </ComboBox> 
+        -->
+        <TextBlock Grid.Column="1"
+                 Grid.Row="2"
+                 Text="{Binding Affiliation.Name}"
+                 Style="{StaticResource EntryFieldLabelNormal}"/>
         <TextBlock Grid.Column="0"
                Grid.Row="3"
                Style="{StaticResource EntryFieldLabelNormal}"

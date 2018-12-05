@@ -18,9 +18,9 @@ namespace RaceRegWPF.View
     /// <summary>
     /// Interaction logic for ParticipantView.xaml
     /// </summary>
-    public partial class ParticipantView : UserControl
+    public partial class AddParticipantView : UserControl
     {
-        public ParticipantView()
+        public AddParticipantView()
         {
             InitializeComponent();
         }
