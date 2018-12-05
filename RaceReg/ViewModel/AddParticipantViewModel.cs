@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RaceReg.ViewModel
 {
-    public class ParticipantViewModel : ViewModelBase
+    public class AddParticipantViewModel : ViewModelBase
     {
         private IRaceRegDB _database;
         private MainWindowViewModel mainWindow;
@@ -78,7 +78,7 @@ namespace RaceReg.ViewModel
             }
             ));
 
-        public ParticipantViewModel(MainWindowViewModel mainWindowViewModel, IRaceRegDB db)
+        public AddParticipantViewModel(MainWindowViewModel mainWindowViewModel, IRaceRegDB db)
         {
             _database = db;
             mainWindow = mainWindowViewModel;

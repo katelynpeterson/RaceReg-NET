@@ -76,7 +76,7 @@
                 <DataTemplate>
                     <ContentControl Content="{Binding ViewModel}">
                         <ContentControl.Resources>
-                            <DataTemplate DataType="{x:Type vm:ParticipantViewModel}">
+                            <DataTemplate DataType="{x:Type vm:AddParticipantViewModel}">
                                 <view:ParticipantView />
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:AllParticipantViewModel}">
