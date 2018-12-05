@@ -9,43 +9,57 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
-        <Ribbon DockPanel.Dock="Top">
-
-            <RibbonTab Header="Home">
-                <RibbonGroup Header="Meets">
-                    <RibbonButton Label="Add Meet"
-                                  LargeImageSource="/Resources/track-corner-add.png"
-                                  ToolTipTitle="Add Meet Editor Screen."
-                                  ToolTipDescription="Add a new tab to create new meet."
-                                  Command="{Binding AddParticipantView}"/>
-                    <RibbonButton Label="View Meets"
-                                  LargeImageSource="/Resources/track-corner.png"
-                                  ToolTipTitle="Add Meet View Screen."
-                                  ToolTipDescription="Add a new tab to view meets."
-                                  Command="{Binding AddParticipantView}"/>
-                </RibbonGroup>
-                <RibbonGroup Header="Participants">
-                    <RibbonButton Label="Add Participant"
-                                  LargeImageSource="/Resources/femalerunner-add.png"
-                                  ToolTipTitle="Add Participant Editor Screen."
-                                  ToolTipDescription="Add a new tab to create new participant."
-                                  Command="{Binding AddParticipantView}"/>
-                    <RibbonButton Label="View Participants"
-                                  LargeImageSource="/Resources/femalerunner.png"
-                                  ToolTipTitle="Add Participant View Screen."
-                                  ToolTipDescription="Add a new tab to view meet participants."
-                                  Command="{Binding AddAllParticipantsView}"/>
-                </RibbonGroup>
-                <RibbonGroup Header="Refresh">
-                    <RibbonButton Label="Refresh Items"
-                                  LargeImageSource="/Resources/refresh.png"
-                                  ToolTipTitle="Refresh RaceReg Items"
-                                  ToolTipDescription="Refresh all meet and participant information from the RaceReg servers."
-                                  Command="{Binding RefreshItems}"/>
-                </RibbonGroup>
-            </RibbonTab>
-        </Ribbon>
-
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Close Tab"
+                          Command="{Binding RefreshItems}"/>
+                <Separator />
+                <MenuItem Header="_Refresh"
+                          Command="{Binding RefreshItems}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/refresh.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="_Account" />
+                <MenuItem Header="_Exit"
+                          Command="{Binding ExitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="_Meet">
+                <MenuItem Header="_Add Meet"
+                          Command="{Binding AddParticipantView}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/track-corner-add.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="_View Meets"
+                          Command="{Binding AddParticipantView}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/track-corner.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Participant">
+                <MenuItem Header="_Add Participant"
+                          Command="{Binding AddParticipantView}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/femalerunner-add.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="_View Participants"
+                          Command="{Binding AddAllParticipantsView}">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/femalerunner.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About"
+                          Command="{Binding AboutCommand}"/>
+            </MenuItem>
+        </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Content="RaceReg Registration" />
             <Separator></Separator>
