@@ -12,7 +12,7 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_Close Tab"
-                          Command="{Binding RefreshItems}"/>
+                          Command="{Binding CloseTab}"/>
                 <Separator />
                 <MenuItem Header="_Refresh"
                           Command="{Binding RefreshItems}">

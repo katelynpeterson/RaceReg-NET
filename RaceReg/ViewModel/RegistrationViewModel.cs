@@ -76,7 +76,22 @@ namespace RaceReg.ViewModel
         //Default constructor
         public RegistrationViewModel(MainWindowViewModel mainWindowViewModel) : this(mainWindowViewModel, new RaceRegDatabase(), new DialogService()) {}
 
-        
+        private RelayCommand closeTab;
+        public RelayCommand CloseTab => closeTab ?? (closeTab = new RelayCommand(
+            () =>
+            {
+                ChildViewModels.Remove(SelectedChildViewModel);
+
+                if(ChildViewModels.Count == 0)
+                {
+                    SelectedChildViewModel = null;
+                }
+                else
+                {
+                    SelectedChildViewModel = ChildViewModels.Last();
+                }
+            }
+            ));
 
         private RelayCommand addParticipantView;
         public RelayCommand AddParticipantView => addParticipantView ?? (addParticipantView = new RelayCommand(
