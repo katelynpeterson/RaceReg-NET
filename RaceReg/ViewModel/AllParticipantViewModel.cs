@@ -11,6 +11,8 @@ namespace RaceReg.ViewModel
 {
     public class AllParticipantViewModel : ViewModelBase
     {
+        private MainWindowViewModel mainWindow;
+
         public ObservableCollection<Affiliation> affiliations;
         public ObservableCollection<Affiliation> Affiliations
         {
@@ -46,9 +48,12 @@ namespace RaceReg.ViewModel
             }
         }
 
-        public AllParticipantViewModel()
+        public AllParticipantViewModel(MainWindowViewModel mainWindowViewModel)
         {
+            mainWindow = mainWindowViewModel;
 
+            this.Affiliations = mainWindow.Affiliations;
+            this.participants = mainWindow.Participants;
         }
     }
 }

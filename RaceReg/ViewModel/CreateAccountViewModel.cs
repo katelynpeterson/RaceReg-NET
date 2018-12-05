@@ -94,6 +94,8 @@ namespace RaceReg.ViewModel
             _dialogService = dialogService;
             mainWindow = mainWindowViewModel;
 
+            this.Affiliations = mainWindow.Affiliations;
+
             mainWindow.QueryDatabase();
         }
 

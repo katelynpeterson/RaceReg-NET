@@ -69,6 +69,8 @@ namespace RaceReg.ViewModel
             _dialogService = dialogService;
 
             mainWindow.QueryDatabase();
+
+            
         }
 
         //Default constructor
@@ -81,7 +83,6 @@ namespace RaceReg.ViewModel
             () =>
             {
                 ParticipantViewModel participantEditorViewModel = new ParticipantViewModel(mainWindow, _database);
-                participantEditorViewModel.Affiliations = mainWindow.Affiliations;
                 ChildViewModels.Add(new ChildControl("Participant Editor", participantEditorViewModel));
                 SelectedChildViewModel = ChildViewModels.Last();
             }
@@ -91,10 +92,7 @@ namespace RaceReg.ViewModel
         public RelayCommand AddAllParticipantView => addAllParticipantsView ?? (addAllParticipantsView = new RelayCommand(
             () =>
             {
-                AllParticipantViewModel allParticipantEditorViewModel = new AllParticipantViewModel();
-                allParticipantEditorViewModel.Affiliations = mainWindow.Affiliations;
-                allParticipantEditorViewModel.Participants = mainWindow.Participants;
-
+                AllParticipantViewModel allParticipantEditorViewModel = new AllParticipantViewModel(mainWindow);
                 ChildViewModels.Add(new ChildControl("All Participants", allParticipantEditorViewModel));
                 SelectedChildViewModel = ChildViewModels.Last();
             }

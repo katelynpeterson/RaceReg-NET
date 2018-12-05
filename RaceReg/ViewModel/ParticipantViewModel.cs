@@ -85,6 +85,8 @@ namespace RaceReg.ViewModel
 
             Participant = new Participant();
 
+            this.Affiliations = mainWindow.Affiliations;
+
             mainWindow.QueryDatabase();
         }
     }
