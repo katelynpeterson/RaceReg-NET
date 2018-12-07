@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>racereglogo_timingandregistration_Tkh_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
@@ -216,6 +219,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\RaceRegLogo_TimingAndRegistration.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\racereglogo_timingandregistration_Tkh_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="racereglogo_timingandregistration_Tkh_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
