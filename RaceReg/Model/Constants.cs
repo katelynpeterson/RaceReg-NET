@@ -10,7 +10,7 @@ namespace RaceReg.Model
     {
         private const string DATABASE_NAME = "raceregdb";
         private const string USERNAME = "csharpapp";
-        private const string PASSWORD = "csharpapp";
+        private const string PASSWORD = "RRurock999";
         private const string SERVER = "db.racereg.run";
         public const string CONNECTION_STRING = "Server=" + SERVER + "; database=" + DATABASE_NAME + "; UID=" + USERNAME + "; password=" + PASSWORD;
 
