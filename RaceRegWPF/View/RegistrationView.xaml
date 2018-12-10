@@ -63,7 +63,8 @@
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Content="RaceReg Registration" />
             <Separator></Separator>
-            <StatusBarItem Content="{Binding Message}" />
+            <StatusBarItem Content="{Binding Message}" 
+                           FontWeight="Bold"/>
         </StatusBar>
 
         <TabControl ItemsSource="{Binding ChildViewModels}" SelectedItem="{Binding SelectedChildViewModel}">
