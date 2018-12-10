@@ -57,7 +57,7 @@ namespace RaceReg.Model
             }
         }
 
-        public String FirstName
+        public string FirstName
         {
             get
             {
@@ -70,7 +70,7 @@ namespace RaceReg.Model
             }
         }
 
-        public String LastName
+        public string LastName
         {
             get
             {
