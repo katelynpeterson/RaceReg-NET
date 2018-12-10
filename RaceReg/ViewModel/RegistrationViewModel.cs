@@ -15,6 +15,19 @@ namespace RaceReg.ViewModel
         private IRaceRegDB _database;
         private IDialogService _dialogService;
 
+        private string message;
+        public string Message
+        {
+            get
+            {
+                return message;
+            }
+            set
+            {
+                Set(ref message, value);
+            }
+        }
+
         private ObservableCollection<ChildControl> childViewModels;
         public ObservableCollection<ChildControl> ChildViewModels
         {
@@ -97,7 +110,7 @@ namespace RaceReg.ViewModel
         public RelayCommand AddParticipantView => addParticipantView ?? (addParticipantView = new RelayCommand(
             () =>
             {
-                AddParticipantViewModel participantEditorViewModel = new AddParticipantViewModel(mainWindow, _database);
+                AddParticipantViewModel participantEditorViewModel = new AddParticipantViewModel(mainWindow, this, _database);
                 ChildViewModels.Add(new ChildControl("Participant Editor", participantEditorViewModel));
                 SelectedChildViewModel = ChildViewModels.Last();
             }

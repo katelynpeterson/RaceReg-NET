@@ -14,6 +14,7 @@ namespace RaceReg.ViewModel
     {
         private IRaceRegDB _database;
         private MainWindowViewModel mainWindow;
+        private RegistrationViewModel registrationView;
 
         private Participant participant;
         public Participant Participant
@@ -66,6 +67,8 @@ namespace RaceReg.ViewModel
 
         public async Task SaveNewParticipantToDatabaseAsync()
         {
+            Participant.Affiliation = mainWindow.CurrentUser.Affiliation;
+
             var result = await _database.SaveNewParticipant(Participant);
 
             if(result == null)
@@ -80,7 +83,8 @@ namespace RaceReg.ViewModel
             }
             else
             {
-                //CLOSE THE VIEW
+                registrationView.Message = "Succesfully Added Participant";
+                registrationView.CloseTab.Execute(null);
             }
         }
 
@@ -92,10 +96,11 @@ namespace RaceReg.ViewModel
             }
             ));
 
-        public AddParticipantViewModel(MainWindowViewModel mainWindowViewModel, IRaceRegDB db)
+        public AddParticipantViewModel(MainWindowViewModel mainWindowViewModel, RegistrationViewModel registrationView, IRaceRegDB db)
         {
             _database = db;
             mainWindow = mainWindowViewModel;
+            this.registrationView = registrationView;
 
             Participant = new Participant();
 
