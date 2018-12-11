@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RaceReg.ViewModel
 {
-    public class AddParticipantViewModel : ViewModelBase
+    public class AddParticipantViewModel : ChildControl
     {
         private IRaceRegDB _database;
         private MainWindowViewModel mainWindow;
@@ -57,6 +57,7 @@ namespace RaceReg.ViewModel
 
 
         public enum GenderType { Male, Female, Other };
+
         public IEnumerable<GenderType> GenderTypes
         {
             get

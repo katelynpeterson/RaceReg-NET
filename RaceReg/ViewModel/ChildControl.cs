@@ -1,14 +1,9 @@
-﻿namespace RaceReg.ViewModel
-{
-    public class ChildControl
-    {
-        public ChildControl(string header, object viewModel)
-        {
-            Header = header;
-            ViewModel = viewModel;
-        }
+﻿using GalaSoft.MvvmLight;
 
-        public string Header { get; set; }
-        public object ViewModel { get; set; }
+namespace RaceReg.ViewModel
+{
+    public class ChildControl : ViewModelBase
+    {
+        
     }
 }

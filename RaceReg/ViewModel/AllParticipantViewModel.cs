@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RaceReg.ViewModel
 {
-    public class AllParticipantViewModel : ViewModelBase
+    public class AllParticipantViewModel : ChildControl
     {
         private MainWindowViewModel mainWindow;
 
