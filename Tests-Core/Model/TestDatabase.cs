@@ -185,7 +185,7 @@ namespace Tests_Core
             return await Task.FromResult(users[users.Count() - 1]);
         }
 
-        public Task<Participant> UpdateParticipantAsync(Participant participant)
+        public Task<int> UpdateParticipantAsync(Participant participant)
         {
             foreach(Participant tempParticipant in participants)
             {
@@ -197,12 +197,12 @@ namespace Tests_Core
                     tempParticipant.Gender = participant.Gender;
                     tempParticipant.BirthDate = participant.BirthDate;
 
-                    return Task.FromResult(tempParticipant);
+                    return Task.FromResult(tempParticipant.Id);
                 }
             }
 
             participant.Id = -1;
-            return Task.FromResult(participant);
+            return Task.FromResult(participant.Id);
         }
     }
 }

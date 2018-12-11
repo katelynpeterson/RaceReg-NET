@@ -75,7 +75,7 @@ namespace RaceReg.ViewModel
                 registrationView.Message = "Save to database failed! Null result";
                 //throw new Exception("Save to database failed! Null result");
             }
-            else if(result.Id < 1)
+            else if(result < 1)
             {
                 registrationView.Message = "Save to database failed! No rows affected.";
                 //throw new Exception("Save to database failed! Id was not updated.");

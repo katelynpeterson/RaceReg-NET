@@ -14,6 +14,6 @@ namespace RaceReg.Model
         Task<IEnumerable<Participant>> RefreshParticipants();
         Task<Participant> SaveNewParticipant(Participant updatedParticipant);
         Task<Affiliation> AddNewAffiliationAsync(Affiliation affiliation);
-        Task<Participant> UpdateParticipantAsync(Participant participant);
+        Task<int> UpdateParticipantAsync(Participant participant);
     }
 }
