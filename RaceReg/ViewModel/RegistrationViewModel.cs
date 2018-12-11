@@ -63,13 +63,7 @@ namespace RaceReg.ViewModel
             }
             set
             {
-                if (_selectedParticipant == value)
-                {
-                    return;
-                }
-
-                _selectedParticipant = value;
-                RaisePropertyChanged("SelectedParticipant");
+                Set(ref _selectedParticipant, value);
             }
         }
 
@@ -111,6 +105,15 @@ namespace RaceReg.ViewModel
             () =>
             {
                 ChildViewModels.Add(new AddParticipantViewModel("Add Particiapnt", mainWindow, this, _database));
+                SelectedChildViewModel = ChildViewModels.Last();
+            }
+            ));
+
+        private RelayCommand addParticipantEditView;
+        public RelayCommand AddParticipantEditView => addParticipantEditView ?? (addParticipantEditView = new RelayCommand(
+            () =>
+            {
+                ChildViewModels.Add(new AddParticipantViewModel("Edit Particiapnt", mainWindow, this, _database));
                 SelectedChildViewModel = ChildViewModels.Last();
             }
             ));
