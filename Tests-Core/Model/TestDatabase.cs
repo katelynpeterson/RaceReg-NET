@@ -187,31 +187,22 @@ namespace Tests_Core
 
         public Task<Participant> UpdateParticipantAsync(Participant participant)
         {
-            throw new NotImplementedException();
+            foreach(Participant tempParticipant in participants)
+            {
+                if(tempParticipant.Id == participant.Id)
+                {
+                    tempParticipant.FirstName = participant.FirstName;
+                    tempParticipant.LastName = participant.LastName;
+                    tempParticipant.Affiliation = participant.Affiliation;
+                    tempParticipant.Gender = participant.Gender;
+                    tempParticipant.BirthDate = participant.BirthDate;
+
+                    return Task.FromResult(tempParticipant);
+                }
+            }
+
+            participant.Id = -1;
+            return Task.FromResult(participant);
         }
-
-        //public async Task<Participant> SaveNewParticipant(Participant updatedParticipant)
-        //{
-        //    int index = -1;
-        //    for(int i = 0;  i < participants.Count(); i++)
-        //    {
-        //        if (participants[i].Id == updatedParticipant.Id)
-        //        {
-        //            participants[i] = updatedParticipant;
-        //            index = i;
-        //            break;
-        //        }
-        //    }
-
-        //    if(index < 0)
-        //    {
-        //        Participant toReturn = null;
-        //        return await Task.FromResult(toReturn);
-        //    }
-        //    else
-        //    {
-        //        return await Task.FromResult(participants[index]);
-        //    }
-        //}
     }
 }
