@@ -77,12 +77,13 @@ namespace RaceReg.ViewModel
             }
             else if(result.Id < 1)
             {
-                registrationView.Message = "Save to database failed! Id was not updated.";
+                registrationView.Message = "Save to database failed! No rows affected.";
                 //throw new Exception("Save to database failed! Id was not updated.");
             }
             else
             {
                 registrationView.Message = "Succesfully Edited Participant";
+                mainWindow.QueryDatabase();
                 registrationView.CloseTab.Execute(null);
             }
         }
@@ -104,8 +105,6 @@ namespace RaceReg.ViewModel
             this.Affiliations = mainWindow.Affiliations;
             this.Affiliation = mainWindow.CurrentUser.Affiliation;
             this.Participant = selectedParticipant;
-
-            mainWindow.QueryDatabase();
         }
     }
 }

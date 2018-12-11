@@ -342,9 +342,52 @@ namespace RaceReg.Model
             }
         }
 
-        public Task<Participant> UpdateParticipantAsync(Participant participant)
+        public async Task<int> UpdateParticipantAsync(Participant updatedParticipant)
         {
-            throw new NotImplementedException();
+            int result;
+
+            string saveParticipantStatement = "UPDATE " + Constants.PARTICIPANT + " SET "
+                + "firstname = @firstname, "
+                + "lastname = @lastname, "
+                + "affiliationid = @affiliationid, "
+                + "gender = @gender, "
+                + "birthdate = @birthdate"
+                + " WHERE id = @id;";
+            using (var connection1 = new MySqlConnection(Constants.CONNECTION_STRING))
+            {
+                await connection1.OpenAsync();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = connection1;
+                    cmd.CommandText = saveParticipantStatement;
+                    cmd.Prepare();
+
+                    cmd.Parameters.AddWithValue("@firstname", updatedParticipant.FirstName);
+                    cmd.Parameters.AddWithValue("@lastname", updatedParticipant.LastName);
+                    cmd.Parameters.AddWithValue("@affiliationid", updatedParticipant.Affiliation.Id);
+                    if (updatedParticipant.Gender == Participant.GenderType.Male)
+                    {
+                        cmd.Parameters.AddWithValue("@gender", "m");
+                    }
+                    else if (updatedParticipant.Gender == Participant.GenderType.Female)
+                    {
+                        cmd.Parameters.AddWithValue("@gender", "f");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@gender", "o");
+                    }
+
+
+                    cmd.Parameters.AddWithValue("@birthdate", updatedParticipant.BirthDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@id", updatedParticipant.Id);
+
+                    result = await cmd.ExecuteNonQueryAsync();
+
+                }
+
+                return result;
+            }
         }
     }
 }
