@@ -13,14 +13,16 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel>
-        <DataGrid ItemsSource="{Binding Participants}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
-                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
-                <DataGridTextColumn Header="Affiliation" Binding="{Binding Affiliation.Abbreviation}" />
-                <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" />
-                <DataGridTextColumn Header="Birth Date" Binding="{Binding BirthDate}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <ScrollViewer>
+            <DataGrid ItemsSource="{Binding Participants}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
+                    <DataGridTextColumn Header="Affiliation" Binding="{Binding Affiliation.Abbreviation}" />
+                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" />
+                    <DataGridTextColumn Header="Birth Date" Binding="{Binding BirthDate}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </StackPanel>
 </UserControl>

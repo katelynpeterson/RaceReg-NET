@@ -13,6 +13,19 @@ namespace RaceReg.ViewModel
     {
         private MainWindowViewModel mainWindow;
 
+        public Participant selectedParticipant;
+        public Participant SelectedParticipant
+        {
+            get
+            {
+                return selectedParticipant;
+            }
+            set
+            {
+                Set(ref selectedParticipant, value);
+            }
+        }
+
         public ObservableCollection<Affiliation> affiliations;
         public ObservableCollection<Affiliation> Affiliations
         {
@@ -48,7 +61,7 @@ namespace RaceReg.ViewModel
             }
         }
 
-        public AllParticipantViewModel(MainWindowViewModel mainWindowViewModel)
+        public AllParticipantViewModel(string header, MainWindowViewModel mainWindowViewModel, RegistrationViewModel registrationView) : base(header)
         {
             mainWindow = mainWindowViewModel;
 

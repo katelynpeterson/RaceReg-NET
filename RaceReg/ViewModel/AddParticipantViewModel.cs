@@ -97,7 +97,7 @@ namespace RaceReg.ViewModel
             }
             ));
 
-        public AddParticipantViewModel(MainWindowViewModel mainWindowViewModel, RegistrationViewModel registrationView, IRaceRegDB db)
+        public AddParticipantViewModel(string header, MainWindowViewModel mainWindowViewModel, RegistrationViewModel registrationView, IRaceRegDB db) : base(header)
         {
             _database = db;
             mainWindow = mainWindowViewModel;

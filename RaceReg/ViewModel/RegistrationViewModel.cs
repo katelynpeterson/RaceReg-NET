@@ -110,16 +110,16 @@ namespace RaceReg.ViewModel
         public RelayCommand AddParticipantView => addParticipantView ?? (addParticipantView = new RelayCommand(
             () =>
             {
-                ChildViewModels.Add(new AddParticipantViewModel(mainWindow, this, _database));
+                ChildViewModels.Add(new AddParticipantViewModel("Add Particiapnt", mainWindow, this, _database));
                 SelectedChildViewModel = ChildViewModels.Last();
             }
             ));
 
         private RelayCommand addAllParticipantsView;
-        public RelayCommand AddAllParticipantView => addAllParticipantsView ?? (addAllParticipantsView = new RelayCommand(
+        public RelayCommand AddAllParticipantsView => addAllParticipantsView ?? (addAllParticipantsView = new RelayCommand(
             () =>
             {
-                ChildViewModels.Add(new AllParticipantViewModel(mainWindow));
+                ChildViewModels.Add(new AllParticipantViewModel("All Participants", mainWindow, this));
                 SelectedChildViewModel = ChildViewModels.Last();
             }
             ));
