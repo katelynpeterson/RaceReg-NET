@@ -341,5 +341,10 @@ namespace RaceReg.Model
                 }
             }
         }
+
+        public Task<Participant> UpdateParticipantAsync(Participant participant)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

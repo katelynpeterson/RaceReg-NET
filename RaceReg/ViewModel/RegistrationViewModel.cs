@@ -100,20 +100,18 @@ namespace RaceReg.ViewModel
             }
             ));
 
+        public void EditParticipant(Participant participant)
+        {
+            ChildViewModels.Add(new EditParticipantViewModel("Edit " + participant.FirstName + " " + participant.LastName + " (" + participant.Affiliation.Abbreviation + ")",
+                mainWindow, this, _database, participant));
+            SelectedChildViewModel = ChildViewModels.Last();
+        }
+
         private RelayCommand addParticipantView;
         public RelayCommand AddParticipantView => addParticipantView ?? (addParticipantView = new RelayCommand(
             () =>
             {
-                ChildViewModels.Add(new AddParticipantViewModel("Add Particiapnt", mainWindow, this, _database));
-                SelectedChildViewModel = ChildViewModels.Last();
-            }
-            ));
-
-        private RelayCommand addParticipantEditView;
-        public RelayCommand AddParticipantEditView => addParticipantEditView ?? (addParticipantEditView = new RelayCommand(
-            () =>
-            {
-                ChildViewModels.Add(new AddParticipantViewModel("Edit Particiapnt", mainWindow, this, _database));
+                ChildViewModels.Add(new AddParticipantViewModel("Add Participant", mainWindow, this, _database));
                 SelectedChildViewModel = ChildViewModels.Last();
             }
             ));

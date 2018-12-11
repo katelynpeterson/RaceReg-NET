@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using RaceReg.Model;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace RaceReg.ViewModel
     public class AllParticipantViewModel : ChildControl
     {
         private MainWindowViewModel mainWindow;
+        private RegistrationViewModel registrationView;
 
         public Participant selectedParticipant;
         public Participant SelectedParticipant
@@ -64,9 +66,19 @@ namespace RaceReg.ViewModel
         public AllParticipantViewModel(string header, MainWindowViewModel mainWindowViewModel, RegistrationViewModel registrationView) : base(header)
         {
             mainWindow = mainWindowViewModel;
+            this.registrationView = registrationView;
 
             this.Affiliations = mainWindow.Affiliations;
             this.participants = mainWindow.Participants;
         }
+
+        private RelayCommand editParticipant;
+        public RelayCommand EditParticipant => editParticipant ?? (editParticipant = new RelayCommand(
+            () =>
+            {
+                registrationView.CloseTab.Execute(null);
+                registrationView.EditParticipant(SelectedParticipant);
+            }
+            ));
     }
 }

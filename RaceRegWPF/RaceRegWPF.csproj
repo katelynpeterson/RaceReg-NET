@@ -95,6 +95,9 @@
     <Compile Include="View\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditParticipantView.xaml.cs">
+      <DependentUpon>EditParticipantView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AllParticipantView.xaml.cs">
       <DependentUpon>AllParticipantView.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,9 @@
     </Page>
     <Page Include="View\AboutView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditParticipantView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AllParticipantView.xaml">

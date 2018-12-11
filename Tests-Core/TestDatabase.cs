@@ -185,6 +185,11 @@ namespace Tests_Core
             return await Task.FromResult(users[users.Count() - 1]);
         }
 
+        public Task<Participant> UpdateParticipantAsync(Participant participant)
+        {
+            throw new NotImplementedException();
+        }
+
         //public async Task<Participant> SaveNewParticipant(Participant updatedParticipant)
         //{
         //    int index = -1;

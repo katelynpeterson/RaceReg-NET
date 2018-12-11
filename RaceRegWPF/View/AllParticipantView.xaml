@@ -14,7 +14,7 @@
     </UserControl.Resources>
     <StackPanel>
         <ScrollViewer>
-            <DataGrid ItemsSource="{Binding Participants}" AutoGenerateColumns="False">
+            <DataGrid ItemsSource="{Binding Participants}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedParticipant}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
                     <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
@@ -24,5 +24,9 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
+        <Button Content="Edit Selected Participant"
+                Command="{Binding EditParticipant}"
+                Height="30"
+                FontWeight="Bold"/>
     </StackPanel>
 </UserControl>
