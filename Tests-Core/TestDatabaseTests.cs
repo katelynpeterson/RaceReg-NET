@@ -156,6 +156,63 @@ namespace Tests_Core
             Assert.AreEqual(affiliations[0], newAffiliation);
         }
 
+        [TestCase("Jackson", "Porter", "m", "MHS", "1997-01-01")]
+        public async Task UpdateParticipantAsyncTestAsync(string firstName, string lastName, string gender, string affiliationAbbreviation, string birthDate)
+        {
+            /** Make a new database **/
+            var testDB = new TestDatabase();
+
+            /** Make the participant **/
+            Participant newParticipant = new Participant();
+
+            newParticipant.FirstName = firstName;
+            newParticipant.LastName = lastName;
+
+            if (gender.Equals("m"))
+            {
+                newParticipant.Gender = Participant.GenderType.Male;
+            }
+            else if (gender.Equals("f"))
+            {
+                newParticipant.Gender = Participant.GenderType.Female;
+            }
+            else
+            {
+                newParticipant.Gender = Participant.GenderType.Other;
+            }
+
+            newParticipant.BirthDate = Convert.ToDateTime(birthDate);
+
+            /** Make an affiliation with matching abbreviation and store in DB **/
+            Affiliation matchingAffiliation = new Affiliation();
+            matchingAffiliation.Abbreviation = affiliationAbbreviation;
+            matchingAffiliation.Name = affiliationAbbreviation;
+            matchingAffiliation = await testDB.AddNewAffiliationAsync(matchingAffiliation);
+
+            newParticipant.Affiliation = matchingAffiliation;
+
+            /** Store participant in database **/
+            Participant returnedParticipant = await testDB.SaveNewParticipant(newParticipant);
+            
+            var tempParticipant = new Participant();
+            tempParticipant.Id = returnedParticipant.Id;
+            tempParticipant.Affiliation = returnedParticipant.Affiliation;
+            tempParticipant.FirstName = returnedParticipant.FirstName;
+            tempParticipant.LastName = returnedParticipant.LastName;
+            tempParticipant.Gender = returnedParticipant.Gender;
+            tempParticipant.BirthDate = returnedParticipant.BirthDate;
+            tempParticipant.BirthDate = tempParticipant.BirthDate.AddDays(1);
+
+            await testDB.UpdateParticipantAsync(tempParticipant);
+
+            /** Verify participant excists **/
+            var listParticipants = await testDB.RefreshParticipants();
+            ObservableCollection<Participant> participants = new ObservableCollection<Participant>(listParticipants);
+
+            /** Test Equality On Changed Item of Participant**/
+            Assert.AreEqual(participants[0].BirthDate, Convert.ToDateTime(birthDate).AddDays(1));
+        }
+
         //[TestCase("Murray High School", "MHS")]
         //public async Task AddNewAffiliationTestMockAsync(string name, string abbreviation)
         //{
@@ -180,7 +237,7 @@ namespace Tests_Core
 
         //    /** Test Equality **/
         //    Assert.AreEqual(affiliations[0], newAffiliation);
-            
+
         //}
     }
 }
