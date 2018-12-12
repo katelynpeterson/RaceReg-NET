@@ -292,7 +292,7 @@ namespace Tests_Core
             /** Make a new database **/
             var testDB = new TestDatabase();
 
-            /** Make a temp user **/
+            /** Make a temporary user **/
             var user = new User();
             user.FirstName = "Database";
             user.LastName = "Tester";
@@ -321,8 +321,8 @@ namespace Tests_Core
 
             Assert.AreEqual(theMeet.Name, name);
             Assert.AreEqual(theMeet.Description, description);
-            Assert.AreEqual(theMeet.StartDateTime, startDateTime);
-            Assert.AreEqual(theMeet.EndDate, endDate);
+            Assert.AreEqual(theMeet.StartDateTime, Convert.ToDateTime(startDateTime));
+            Assert.AreEqual(theMeet.EndDate, Convert.ToDateTime(endDate));
         }
     }
 }

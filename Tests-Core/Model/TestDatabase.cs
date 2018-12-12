@@ -14,17 +14,20 @@ namespace Tests_Core
     {
         List<Affiliation> affiliations;
         List<Participant> participants;
+        List<Meet> meets;
         List<User> users;
-        int currentAffiliationId, currentParticipantId, currentUserId;
+        int currentAffiliationId, currentParticipantId, currentUserId, currentMeetId;
 
         public TestDatabase()
         {
             affiliations = new List<Affiliation>();
             participants = new List<Participant>();
             users = new List<User>();
+            meets = new List<Meet>();
             currentAffiliationId = 1;
             currentParticipantId = 1;
             currentUserId = 1;
+            currentMeetId = 1;
         }
 
         public TestDatabase(bool random)
@@ -32,9 +35,11 @@ namespace Tests_Core
             affiliations = new List<Affiliation>();
             participants = new List<Participant>();
             users = new List<User>();
+            meets = new List<Meet>();
             currentAffiliationId = 1;
             currentParticipantId = 1;
             currentUserId = 1;
+            currentMeetId = 1;
 
             if (random)
             {
@@ -51,9 +56,11 @@ namespace Tests_Core
             affiliations = new List<Affiliation>();
             participants = new List<Participant>(); 
             users = new List<User>();
+            meets = new List<Meet>();
             currentAffiliationId = 1;
             currentParticipantId = 1;
             currentUserId = 1;
+            currentMeetId = 1;
 
             populateDatabase(numAffilations, numParticipants, numUsers);
         }
@@ -205,14 +212,19 @@ namespace Tests_Core
             return Task.FromResult(participant.Id);
         }
 
-        public Task<Meet> AddNewMeetAsync(Meet meet, User user)
+        public async Task<Meet> AddNewMeetAsync(Meet meet, User user)
         {
-            throw new NotImplementedException();
+            meet.UserId = user.Id;
+            meet.Id = currentMeetId;
+            currentMeetId++;
+            meets.Add(meet);
+
+            return await Task.FromResult(meets.Last());
         }
 
-        public Task<IEnumerable<Meet>> RefreshMeets(User user)
+        public async Task<IEnumerable<Meet>> RefreshMeets(User user)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(meets);
         }
     }
 }
