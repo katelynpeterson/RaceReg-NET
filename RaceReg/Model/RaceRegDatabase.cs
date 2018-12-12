@@ -450,9 +450,40 @@ namespace RaceReg.Model
             }
         }
 
-        public Task<IEnumerable<Meet>> RefreshMeets(User user)
+        public async Task<IEnumerable<Meet>> RefreshMeetsAsync(User user)
         {
-            throw new NotImplementedException();
+            List<Meet> meets = new List<Meet>();
+            string getMeetsQuery = "SELECT * FROM " + Constants.MEET + " WHERE active = 1 AND userid = @userid;";
+
+            using (var connection1 = new MySqlConnection(Constants.CONNECTION_STRING))
+            {
+                await connection1.OpenAsync();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = connection1;
+                    cmd.CommandText = getMeetsQuery;
+                    cmd.Prepare();
+
+                    cmd.Parameters.AddWithValue("@userid", user.Id);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    while (await reader.ReadAsync())
+                    {
+                        Meet temp = new Meet();
+                        temp.Id = reader.GetInt32(0);
+                        temp.Name = reader.GetString(1);
+                        temp.Description = reader.GetString(2);
+                        temp.StartDateTime = reader.GetDateTime(3);
+                        temp.EndDate = reader.GetDateTime(4);
+                        temp.UserId = reader.GetInt32(5);
+
+                        meets.Add(temp);
+                    }
+                }
+                
+            }
+
+            return meets;
         }
     }
 }
