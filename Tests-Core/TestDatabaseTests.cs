@@ -241,7 +241,7 @@ namespace Tests_Core
         //}
 
         [TestCase("Jackson", "Porter", "m", "MHS", "1997-01-01")]
-        public async Task SaveNewParticipantTest(string firstName, string lastName, string gender, string affiliationAbbreviation, string birthDate)
+        public async Task SaveNewParticipantTestAsync(string firstName, string lastName, string gender, string affiliationAbbreviation, string birthDate)
         {
             /** Make a new database **/
             var testDB = new TestDatabase();
