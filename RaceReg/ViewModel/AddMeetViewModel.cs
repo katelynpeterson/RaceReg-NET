@@ -71,6 +71,7 @@ namespace RaceReg.ViewModel
         public async Task SaveNewMeetToDatabaseAsync()
         {
             Meet.StartDateTime = Convert.ToDateTime(StartDateTimeString);
+            Meet.StartDateTime = Meet.StartDateTime.AddSeconds((-1) * Meet.StartDateTime.Second);
 
             var result = await _database.AddNewMeetAsync(Meet, CurrentUser);
 
