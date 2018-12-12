@@ -14,6 +14,8 @@ namespace RaceReg.Model
         public Participant Participant { get; set; }
         public string Username { get; set; }
 
+        public string Name { get { return FirstName + " " + LastName; } }
+
         public User()
         {
             Id = -1;

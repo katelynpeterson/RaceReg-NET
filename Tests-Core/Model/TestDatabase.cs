@@ -222,7 +222,7 @@ namespace Tests_Core
             return await Task.FromResult(meets.Last());
         }
 
-        public async Task<IEnumerable<Meet>> RefreshMeets(User user)
+        public async Task<IEnumerable<Meet>> RefreshMeetsAsync(User user)
         {
             return await Task.FromResult(meets);
         }

@@ -314,7 +314,7 @@ namespace Tests_Core
 
             newMeet = await testDB.AddNewMeetAsync(newMeet, user);
 
-            var meetsIEnum = await testDB.RefreshMeets(user);
+            var meetsIEnum = await testDB.RefreshMeetsAsync(user);
             ObservableCollection<Meet> meets = new ObservableCollection<Meet>(meetsIEnum);
 
             var theMeet = meets.Last();

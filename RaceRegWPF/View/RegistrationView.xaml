@@ -27,14 +27,14 @@
             </MenuItem>
             <MenuItem Header="_Meet">
                 <MenuItem Header="_Add Meet"
-                          Command="{Binding AddParticipantView}">
+                          Command="{Binding AddAddMeetView}">
                     <MenuItem.Icon>
                         <Image Source="/Resources/track-corner-add.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="_View Meets"
-                          Command="{Binding AddParticipantView}">
+                          Command="{Binding }">
                     <MenuItem.Icon>
                         <Image Source="/Resources/track-corner.png"/>
                     </MenuItem.Icon>
@@ -85,6 +85,9 @@
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:EditParticipantViewModel}">
                                 <view:EditParticipantView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:AddMeetViewModel}">
+                                <view:AddMeetView />
                             </DataTemplate>
                         </ContentControl.Resources>
                     </ContentControl>

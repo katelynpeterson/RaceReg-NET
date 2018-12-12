@@ -125,6 +125,15 @@ namespace RaceReg.ViewModel
             }
             ));
 
+        private RelayCommand addAddMeetView;
+        public RelayCommand AddAddMeetView => addAddMeetView ?? (addAddMeetView = new RelayCommand(
+            () =>
+            {
+                ChildViewModels.Add(new AddMeetViewModel("Add Meet", mainWindow, this, _database));
+                SelectedChildViewModel = ChildViewModels.Last();
+            }
+            ));
+
         private RelayCommand refreshItems;
         private MainWindowViewModel mainWindowViewModel;
 
