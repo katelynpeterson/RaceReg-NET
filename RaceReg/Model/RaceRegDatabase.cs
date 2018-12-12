@@ -389,5 +389,15 @@ namespace RaceReg.Model
                 return result;
             }
         }
+
+        public Task<Meet> AddNewMeetAsync(Meet meet, User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Meet>> RefreshMeets(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

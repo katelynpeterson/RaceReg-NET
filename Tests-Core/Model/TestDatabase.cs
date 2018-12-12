@@ -205,7 +205,12 @@ namespace Tests_Core
             return Task.FromResult(participant.Id);
         }
 
-        public Task<Meet> AddNewMeetAsync(Meet meet)
+        public Task<Meet> AddNewMeetAsync(Meet meet, User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Meet>> RefreshMeets(User user)
         {
             throw new NotImplementedException();
         }

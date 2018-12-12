@@ -5,6 +5,7 @@ using RaceReg.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -283,6 +284,45 @@ namespace Tests_Core
 
             /** Test Equality **/
             Assert.AreEqual(participants[0], newParticipant);
+        }
+
+        [TestCase("Snow College Track Invite", "Test Track Invite for Any Affiliation", "2018-12-10 10:00:00", "2018-12-11")]
+        public async Task AddNewMeetTestAsync(string name, string description, string startDateTime, string endDate)
+        {
+            /** Make a new database **/
+            var testDB = new TestDatabase();
+
+            /** Make a temp user **/
+            var user = new User();
+            user.FirstName = "Database";
+            user.LastName = "Tester";
+            user.Username = "databasetester";
+            user.Email = "databasetest@racereg.run";
+
+            Affiliation matchingAffiliation = new Affiliation();
+            matchingAffiliation.Abbreviation = "TEST";
+            await testDB.AddNewAffiliationAsync(matchingAffiliation);
+
+            user = await testDB.AddNewUserAsync(user);
+
+            /** Make the meet **/
+            var newMeet = new Meet();
+            newMeet.Name = name;
+            newMeet.Description = description;
+            newMeet.StartDateTime = Convert.ToDateTime(startDateTime);
+            newMeet.EndDate = Convert.ToDateTime(endDate);
+
+            newMeet = await testDB.AddNewMeetAsync(newMeet, user);
+
+            var meetsIEnum = await testDB.RefreshMeets(user);
+            ObservableCollection<Meet> meets = new ObservableCollection<Meet>(meetsIEnum);
+
+            var theMeet = meets.Last();
+
+            Assert.AreEqual(theMeet.Name, name);
+            Assert.AreEqual(theMeet.Description, description);
+            Assert.AreEqual(theMeet.StartDateTime, startDateTime);
+            Assert.AreEqual(theMeet.EndDate, endDate);
         }
     }
 }

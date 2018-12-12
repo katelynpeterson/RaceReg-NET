@@ -15,6 +15,7 @@ namespace RaceReg.Model
         Task<Participant> SaveNewParticipant(Participant updatedParticipant);
         Task<Affiliation> AddNewAffiliationAsync(Affiliation affiliation);
         Task<int> UpdateParticipantAsync(Participant participant);
-        Task<Meet> AddNewMeetAsync(Meet meet);
+        Task<Meet> AddNewMeetAsync(Meet meet, User user);
+        Task<IEnumerable<Meet>> RefreshMeets(User user);
     }
 }
