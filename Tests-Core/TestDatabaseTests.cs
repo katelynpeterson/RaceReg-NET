@@ -323,6 +323,8 @@ namespace Tests_Core
             Assert.AreEqual(theMeet.Description, description);
             Assert.AreEqual(theMeet.StartDateTime, Convert.ToDateTime(startDateTime));
             Assert.AreEqual(theMeet.EndDate, Convert.ToDateTime(endDate));
+            Assert.AreEqual(theMeet.Id, meets.Count());
+            Assert.AreEqual(theMeet.UserId, user.Id);
         }
     }
 }
