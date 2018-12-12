@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RaceReg.Model
 {
-    class Meet : ViewModelBase
+    public class Meet : ViewModelBase
     {
         private int id;
         private string name;
