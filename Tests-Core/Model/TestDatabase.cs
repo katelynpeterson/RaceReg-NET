@@ -204,5 +204,10 @@ namespace Tests_Core
             participant.Id = -1;
             return Task.FromResult(participant.Id);
         }
+
+        public Task<Meet> AddNewMeetAsync(Meet meet)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
