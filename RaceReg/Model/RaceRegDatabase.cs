@@ -390,9 +390,64 @@ namespace RaceReg.Model
             }
         }
 
-        public Task<Meet> AddNewMeetAsync(Meet meet, User user)
+        public async Task<Meet> AddNewMeetAsync(Meet meet, User user)
         {
-            throw new NotImplementedException();
+            string saveMeetStatement = "INSERT INTO " + Constants.MEET + " ("
+                                                                        + "name, "
+                                                                        + "description, "
+                                                                        + "startdatetime, "
+                                                                        + "enddate, "
+                                                                        + "userid, "
+                                                                        + "active"
+                                                                        + ") VALUES ("
+                                                                        + "@name, "
+                                                                        + "@description, "
+                                                                        + "@startdatetime, "
+                                                                        + "@enddate, "
+                                                                        + "@userid, "
+                                                                        + "@active"
+                                                                        + ");"
+                                                                        + " SELECT last_insert_id();";
+            using (var connection1 = new MySqlConnection(Constants.CONNECTION_STRING))
+            {
+                await connection1.OpenAsync();
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = connection1;
+                    cmd.CommandText = saveMeetStatement;
+                    cmd.Prepare();
+
+                    cmd.Parameters.AddWithValue("@name", meet.Name);
+                    cmd.Parameters.AddWithValue("@description", meet.Description);
+                    cmd.Parameters.AddWithValue("@startdatetime", meet.StartDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@enddate", meet.EndDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@userid", user.Id);
+                    cmd.Parameters.AddWithValue("@active", 1);
+
+                    await cmd.ExecuteNonQueryAsync();
+
+#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                    if (cmd.LastInsertedId != null)
+#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                    {
+                        cmd.Parameters.Add(new MySqlParameter("newId", cmd.LastInsertedId));
+                    }
+
+                    var meetId = Convert.ToInt32(cmd.Parameters["@newId"].Value);
+                    meet.Id = meetId;
+                }
+
+#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                if (meet.Id == 0 || meet.Id == null)
+#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+                {
+                    return null;
+                }
+                else
+                {
+                    return meet;
+                }
+            }
         }
 
         public Task<IEnumerable<Meet>> RefreshMeets(User user)
