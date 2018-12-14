@@ -57,7 +57,11 @@ namespace RaceReg.ViewModel
             async () =>
             {
                 user = await _database.AddNewUserAsync(User);
-                mainWindow.CurrentUser = user;
+                ///mainWindow.CurrentUser = user;
+
+                //reset the parts of the current user, instead of overwriting it
+                User.CopyIntoUser(mainWindow.CurrentUser, user);
+
                 mainWindow.SwitchToRegistrationView();
             }
             ));

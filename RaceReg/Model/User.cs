@@ -30,5 +30,18 @@ namespace RaceReg.Model
 
             return false;
         }
+
+        public static User CopyIntoUser(User userToCopyInto, User userToCopy)
+        {
+            userToCopyInto.Id = userToCopy.Id;
+            userToCopyInto.Affiliation = userToCopy.Affiliation;
+            userToCopyInto.FirstName = userToCopy.FirstName;
+            userToCopyInto.LastName = userToCopy.LastName;
+            userToCopyInto.Participant = userToCopy.Participant;
+            userToCopyInto.Username = userToCopy.Username;
+            userToCopyInto.Email = userToCopy.Email;
+
+            return userToCopyInto;
+        }
     }
 }
