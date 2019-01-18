@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace RaceReg.Model.Value_Object
@@ -7,17 +8,24 @@ namespace RaceReg.Model.Value_Object
     public class Email
     {
         private Dictionary<string, string> errors = new Dictionary<string, string>();
+        private string email;
 
-        private bool ValidateTitleName(string title)
+        public Email(string email)
         {
-            if (title == null || title.Equals(String.Empty))
+            if (ValidateEmail(email))
+                this.email = email;
+        }
+
+        private bool ValidateEmail(string email)
+        {
+            if (email == null || email.Equals(String.Empty) || email.Any(Char.IsWhiteSpace))
             {
-                errors[nameof(title)] = "Title must not be empty.";
+                errors[nameof(email)] = "Email must not be empty.";
                 return false;
             }
             else
             {
-                errors[nameof(title)] = null;
+                errors[nameof(email)] = null;
                 return true;
             }
         }

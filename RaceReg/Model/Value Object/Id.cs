@@ -17,7 +17,16 @@ namespace RaceReg.Model.Value_Object
 
         private bool ValidateId(int id)
         {
-            return true;
+            if (id <= 0)
+            {
+                errors[nameof(id)] = "Id must not negative.";
+                return false;
+            }
+            else
+            {
+                errors[nameof(id)] = null;
+                return true;
+            }
         }
     }
 }
