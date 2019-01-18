@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RaceReg.Model.Value_Object;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,8 @@ namespace RaceReg.Model
         //private string _abbreviation;
 
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Abbreviation { get; set; }
+        public TitleName Name { get; set; }
+        public Abbreviation Abbreviation { get; set; }
 
         public override bool Equals(object obj)
         {
