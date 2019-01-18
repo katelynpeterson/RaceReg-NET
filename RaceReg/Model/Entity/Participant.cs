@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using RaceReg.Model.Value_Object;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,8 +26,8 @@ namespace RaceReg.Model
         }
 
         private int _id;
-        private string _firstName;
-        private string _lastName;
+        private Name _firstName;
+        private Name _lastName;
         private Affiliation _affiliation;
         private GenderType _gender;
         private DateTime _birthDate;
@@ -57,7 +58,7 @@ namespace RaceReg.Model
             }
         }
 
-        public string FirstName
+        public Name FirstName
         {
             get
             {
@@ -70,7 +71,7 @@ namespace RaceReg.Model
             }
         }
 
-        public string LastName
+        public Name LastName
         {
             get
             {
@@ -126,42 +127,13 @@ namespace RaceReg.Model
 
         private void setValid()
         {
-            bool fN = ValidateFirstName();
-            bool lN = ValidateLastName();
             bool aG = ValidateBirthDate();
 
 
-            IsValid = fN && lN && aG;
+            IsValid = aG;
         }
 
-        private bool ValidateFirstName()
-        {
-            if (FirstName == null || FirstName.Equals(String.Empty) || FirstName.Any(Char.IsWhiteSpace))
-            {
-                errors[nameof(FirstName)] = "First name must contain no spaces, and cannot be empty.";
-                return false;
-            }
-            else
-            {
-                errors[nameof(FirstName)] = null;
-                return true;
-            }
-        }
-
-        private bool ValidateLastName()
-        {
-            if (LastName == null || LastName.Equals(String.Empty) || LastName.Any(Char.IsWhiteSpace))
-            {
-                errors[nameof(LastName)] = "Last name must contain no spaces, and cannot be empty.";
-                return false;
-            }
-            else
-            {
-                errors[nameof(LastName)] = null;
-                return true;
-            }
-        }
-
+       
         private bool ValidateBirthDate()
         {
             var age = DateTime.Today.Year - BirthDate.Year;

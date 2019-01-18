@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RaceReg.Model.Value_Object;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,8 +8,8 @@ namespace RaceReg.Model
     public class User
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public Name FirstName { get; set; }
+        public Name LastName { get; set; }
         public Affiliation Affiliation { get; set; }
         public string Email { get; set; }
         public Participant Participant { get; set; }
